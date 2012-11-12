@@ -1,0 +1,3771 @@
+//SSD2805_Initial
+    LCD_Cmd_wr(0xb7);
+    LCD_para_wr(0x50);
+    LCD_para_wr(0x00);   //Configuration Register
+
+    LCD_Cmd_wr(0xb8);
+    LCD_para_wr(0x00);
+    LCD_para_wr(0x00);   //VC(Virtual ChannelID) Control Register
+
+    LCD_Cmd_wr(0xb9);
+    LCD_para_wr(0x01);
+    LCD_para_wr(0x00);   //PLL enable
+
+    LCD_Cmd_wr(0xba);
+    LCD_para_wr(0x31);
+    LCD_para_wr(0x02);   //PLL Control Register  500MHz External OSC=40MHz  M/(P1+1)*(P2+1)=Mbps  M:OSC  P2=49 Mbps=500
+
+    LCD_Cmd_wr(0xbb);
+    LCD_para_wr(0x06);
+    LCD_para_wr(0x00);   //500/8/7 = 8.93MHz
+
+    LCD_Cmd_wr(0xc9);
+    LCD_para_wr(0x02);
+    LCD_para_wr(0x23);   //p1: HS-Data-zero  p2: HS-Data- prepare  --> 8031 issue
+    Delays(100);
+
+// OTM9608A_initial
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x04);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xff);
+	LCD_para_wr(0x96);
+	LCD_para_wr(0x08);
+	LCD_para_wr(0x01);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x80);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x03);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xff);
+	LCD_para_wr(0x96);
+	LCD_para_wr(0x08);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xa0);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x80);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x06);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xb3);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x21);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x92);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xb3);
+	LCD_para_wr(0x01);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xc0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xb3);
+	LCD_para_wr(0x11);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x80);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x0a);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc0);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x4a);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x0a);
+	LCD_para_wr(0x0a);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x4a);
+	LCD_para_wr(0x0a);
+	LCD_para_wr(0x0a);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x92);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x05);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc0);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x0e);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x11);
+============================================================================
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xa2);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x04);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc0);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xb3);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x03);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc0);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x50);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x81);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc1);
+	LCD_para_wr(0x55);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x80);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x04);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc4);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x84);
+	LCD_para_wr(0xfa);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xa0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x09);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc4);
+	LCD_para_wr(0x33);
+	LCD_para_wr(0x09);
+	LCD_para_wr(0x90);
+	LCD_para_wr(0x2b);
+	LCD_para_wr(0x33);
+	LCD_para_wr(0x09);
+	LCD_para_wr(0x90);
+	LCD_para_wr(0x54);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x80);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x05);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc5);
+	LCD_para_wr(0x08);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xa0);
+	LCD_para_wr(0x11);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x90);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x08);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc5);
+	LCD_para_wr(0x96);
+	LCD_para_wr(0x81);
+	LCD_para_wr(0x06);
+	LCD_para_wr(0x81);
+	LCD_para_wr(0x33);
+	LCD_para_wr(0x33);
+	LCD_para_wr(0x34);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xa0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x08);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc5);
+	LCD_para_wr(0x96);
+	LCD_para_wr(0x81);
+	LCD_para_wr(0x06);
+	LCD_para_wr(0x81);
+	LCD_para_wr(0x33);
+	LCD_para_wr(0x33);
+	LCD_para_wr(0x34);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xb6);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x05);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xf5);
+	LCD_para_wr(0x15);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x15);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xb0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x03);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc5);
+	LCD_para_wr(0x04);
+	LCD_para_wr(0xa8);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x80);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc6);
+	LCD_para_wr(0x64);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xb0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x06);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc6);
+	LCD_para_wr(0x03);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x1f);
+	LCD_para_wr(0x12);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xe1);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc0);
+	LCD_para_wr(0x96);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xd0);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x03);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xd1);
+	LCD_para_wr(0x01);
+	LCD_para_wr(0x03);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xb7);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xb0);
+	LCD_para_wr(0x10);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xc0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xb0);
+	LCD_para_wr(0x55);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xb1);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xb0);
+	LCD_para_wr(0x03);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x81);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xd6);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x80);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x0b);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcb);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x90);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcb);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xa0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcb);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xb0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x0b);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcb);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xc0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcb);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xaa);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xd0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcb);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xa6);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xe0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x0b);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcb);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xa6);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xf0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x0b);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcb);
+	LCD_para_wr(0xff);
+	LCD_para_wr(0xff);
+	LCD_para_wr(0xff);
+	LCD_para_wr(0xff);
+	LCD_para_wr(0xff);
+	LCD_para_wr(0xff);
+	LCD_para_wr(0xff);
+	LCD_para_wr(0xff);
+	LCD_para_wr(0xff);
+	LCD_para_wr(0xff);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x80);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x0b);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcc);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x04);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x0a);
+	LCD_para_wr(0x0e);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x90);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcc);
+	LCD_para_wr(0x0c);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x08);
+	LCD_para_wr(0x06);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x01);
+	LCD_para_wr(0x03);
+	LCD_para_wr(0x09);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xa0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcc);
+	LCD_para_wr(0x0d);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x0b);
+	LCD_para_wr(0x0f);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x07);
+	LCD_para_wr(0x05);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xb0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x0b);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcc);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x07);
+	LCD_para_wr(0x05);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x0f);
+	LCD_para_wr(0x0b);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xc0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcc);
+	LCD_para_wr(0x0d);
+	LCD_para_wr(0x09);
+	LCD_para_wr(0x01);
+	LCD_para_wr(0x03);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x08);
+	LCD_para_wr(0x06);
+	LCD_para_wr(0x10);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xd0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcc);
+	LCD_para_wr(0x0c);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x0e);
+	LCD_para_wr(0x0a);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x04);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x80);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x0d);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xce);
+	LCD_para_wr(0x86);
+	LCD_para_wr(0x03);
+	LCD_para_wr(0x18);
+	LCD_para_wr(0x85);
+	LCD_para_wr(0x03);
+	LCD_para_wr(0x18);
+	LCD_para_wr(0x84);
+	LCD_para_wr(0x03);
+	LCD_para_wr(0x18);
+	LCD_para_wr(0x83);
+	LCD_para_wr(0x03);
+	LCD_para_wr(0x18);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x90);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x0f);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xce);
+	LCD_para_wr(0x33);
+	LCD_para_wr(0xbd);
+	LCD_para_wr(0x18);
+	LCD_para_wr(0x33);
+	LCD_para_wr(0xbe);
+	LCD_para_wr(0x18);
+	LCD_para_wr(0x33);
+	LCD_para_wr(0xbf);
+	LCD_para_wr(0x18);
+	LCD_para_wr(0x33);
+	LCD_para_wr(0xc0);
+	LCD_para_wr(0x18);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xa0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x0f);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xce);
+	LCD_para_wr(0x38);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x83);
+	LCD_para_wr(0xc1);
+	LCD_para_wr(0x89);
+	LCD_para_wr(0x18);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x38);
+	LCD_para_wr(0x01);
+	LCD_para_wr(0x83);
+	LCD_para_wr(0xc2);
+	LCD_para_wr(0x89);
+	LCD_para_wr(0x18);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xb0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x0f);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xce);
+	LCD_para_wr(0x38);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x83);
+	LCD_para_wr(0xc3);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x18);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x30);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x83);
+	LCD_para_wr(0xc4);
+	LCD_para_wr(0x87);
+	LCD_para_wr(0x18);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xc0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x0f);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xce);
+	LCD_para_wr(0x30);
+	LCD_para_wr(0x01);
+	LCD_para_wr(0x83);
+	LCD_para_wr(0xc5);
+	LCD_para_wr(0x86);
+	LCD_para_wr(0x18);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x30);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x83);
+	LCD_para_wr(0xc6);
+	LCD_para_wr(0x85);
+	LCD_para_wr(0x18);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xd0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x0f);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xce);
+	LCD_para_wr(0x30);
+	LCD_para_wr(0x03);
+	LCD_para_wr(0x83);
+	LCD_para_wr(0xc7);
+	LCD_para_wr(0x84);
+	LCD_para_wr(0x18);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x30);
+	LCD_para_wr(0x04);
+	LCD_para_wr(0x83);
+	LCD_para_wr(0xc8);
+	LCD_para_wr(0x83);
+	LCD_para_wr(0x18);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x80);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x0f);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcf);
+	LCD_para_wr(0xf0);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xf0);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xa0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x0f);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcf);
+	LCD_para_wr(0xf0);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xf0);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xa0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x0f);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcf);
+	LCD_para_wr(0xf0);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xf0);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xb0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x0f);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcf);
+	LCD_para_wr(0xf0);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xf0);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0xc0);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x0b);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xcf);
+	LCD_para_wr(0x01);
+	LCD_para_wr(0x01);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x81);
+	LCD_para_wr(0x20);
+	LCD_para_wr(0x09);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x80);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xd6);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xd7);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x03);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xd8);
+	LCD_para_wr(0x1f);
+	LCD_para_wr(0x1f);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xd9);
+	LCD_para_wr(0x24);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x11);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xe1);
+	LCD_para_wr(0x09);
+	LCD_para_wr(0x11);
+	LCD_para_wr(0x17);
+	LCD_para_wr(0x0d);
+	LCD_para_wr(0x06);
+	LCD_para_wr(0x0e);
+	LCD_para_wr(0x0a);
+	LCD_para_wr(0x08);
+	LCD_para_wr(0x05);
+	LCD_para_wr(0x09);
+	LCD_para_wr(0x0d);
+	LCD_para_wr(0x07);
+	LCD_para_wr(0x0e);
+	LCD_para_wr(0x0e);
+	LCD_para_wr(0x0a);
+	LCD_para_wr(0x08);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x11);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xe2);
+	LCD_para_wr(0x09);
+	LCD_para_wr(0x11);
+	LCD_para_wr(0x17);
+	LCD_para_wr(0x0d);
+	LCD_para_wr(0x06);
+	LCD_para_wr(0x0e);
+	LCD_para_wr(0x0a);
+	LCD_para_wr(0x08);
+	LCD_para_wr(0x05);
+	LCD_para_wr(0x09);
+	LCD_para_wr(0x0d);
+	LCD_para_wr(0x07);
+	LCD_para_wr(0x0e);
+	LCD_para_wr(0x0e);
+	LCD_para_wr(0x0a);
+	LCD_para_wr(0x08);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x23);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xec);
+	LCD_para_wr(0x40);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x23);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xed);
+	LCD_para_wr(0x40);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x23);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xee);
+	LCD_para_wr(0x40);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x54);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x45);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x45);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x54);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x34);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x34);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x34);
+	LCD_para_wr(0x34);
+	LCD_para_wr(0x44);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x80);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x1d);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xca);
+	LCD_para_wr(0x01);
+	LCD_para_wr(0x8e);
+	LCD_para_wr(0x95);
+	LCD_para_wr(0x9d);
+	LCD_para_wr(0xa4);
+	LCD_para_wr(0xab);
+	LCD_para_wr(0xb2);
+	LCD_para_wr(0xba);
+	LCD_para_wr(0xc1);
+	LCD_para_wr(0xc8);
+	LCD_para_wr(0xcf);
+	LCD_para_wr(0xd7);
+	LCD_para_wr(0xde);
+	LCD_para_wr(0xe5);
+	LCD_para_wr(0xec);
+	LCD_para_wr(0xec);
+	LCD_para_wr(0xe8);
+	LCD_para_wr(0xff);
+	LCD_para_wr(0x87);
+	LCD_para_wr(0xff);
+	LCD_para_wr(0x87);
+	LCD_para_wr(0xff);
+	LCD_para_wr(0x05);
+	LCD_para_wr(0x03);
+	LCD_para_wr(0x05);
+	LCD_para_wr(0x03);
+	LCD_para_wr(0x05);
+	LCD_para_wr(0x03);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc7);
+	LCD_para_wr(0x10);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x13);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc8);
+	LCD_para_wr(0x90);
+	LCD_para_wr(0xa9);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x55);
+	LCD_para_wr(0x55);
+	LCD_para_wr(0x55);
+	LCD_para_wr(0x55);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc7);
+	LCD_para_wr(0x11);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x13);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc8);
+	LCD_para_wr(0x90);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0x9a);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x55);
+	LCD_para_wr(0x55);
+	LCD_para_wr(0x55);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc7);
+	LCD_para_wr(0x12);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x13);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc8);
+	LCD_para_wr(0x90);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0xa9);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x55);
+	LCD_para_wr(0x55);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc7);
+	LCD_para_wr(0x13);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x13);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc8);
+	LCD_para_wr(0x90);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0x9a);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x55);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc7);
+	LCD_para_wr(0x14);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x13);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc8);
+	LCD_para_wr(0x90);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0xa9);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x66);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc7);
+	LCD_para_wr(0x15);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x13);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc8);
+	LCD_para_wr(0x90);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0xaa);
+	LCD_para_wr(0x9a);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x66);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc7);
+	LCD_para_wr(0x16);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x13);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc8);
+	LCD_para_wr(0x90);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0xa9);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x66);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc7);
+	LCD_para_wr(0x17);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x13);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc8);
+	LCD_para_wr(0x80);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x66);
+	LCD_para_wr(0x66);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc7);
+	LCD_para_wr(0x18);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x13);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc8);
+	LCD_para_wr(0x80);
+	LCD_para_wr(0x98);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x98);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x66);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc7);
+	LCD_para_wr(0x19);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x13);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc8);
+	LCD_para_wr(0x80);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc7);
+	LCD_para_wr(0x1a);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x13);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc8);
+	LCD_para_wr(0x80);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x98);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x98);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc7);
+	LCD_para_wr(0x1b);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x13);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc8);
+	LCD_para_wr(0x80);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc7);
+	LCD_para_wr(0x1c);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x13);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc8);
+	LCD_para_wr(0x80);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x98);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x98);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc7);
+	LCD_para_wr(0x1d);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x13);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc8);
+	LCD_para_wr(0x80);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x99);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x88);
+	LCD_para_wr(0x77);
+	LCD_para_wr(0x77);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xc7);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x02);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xB7);
+	LCD_para_wr(0x10);
+	LCD_para_wr(0x02);
+
+	LCD_Cmd_wr(0xBD);
+	LCD_para_wr(0x00);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xBC);
+	LCD_para_wr(0x04);
+	LCD_para_wr(0x00);
+
+	LCD_Cmd_wr(0xbf);
+	LCD_para_wr(0xff);
+	LCD_para_wr(0xff);
+	LCD_para_wr(0xff);
+	LCD_para_wr(0xff);
+
+    LCD_Cmd_wr(0xB7);
+    LCD_para_wr(0x50);
+    LCD_para_wr(0x02);
+    LCD_Cmd_wr(0xBD);
+    LCD_para_wr(0x00);
+    LCD_para_wr(0x00);
+    LCD_Cmd_wr(0xBC);
+    LCD_para_wr(0x01);
+    LCD_para_wr(0x00);
+LCD_Cmd_wr(0x36); 
+LCD_para_wr(0xc8);
+
+    LCD_Cmd_wr(0xB7);
+    LCD_para_wr(0x50);
+    LCD_para_wr(0x02);
+    LCD_Cmd_wr(0xBD);
+    LCD_para_wr(0x00);
+    LCD_para_wr(0x00);
+    LCD_Cmd_wr(0xBC);
+    LCD_para_wr(0x00);
+    LCD_para_wr(0x00);
+LCD_Cmd_wr(0x11); 
+Delays(100);
+
+    LCD_Cmd_wr(0xB7);
+    LCD_para_wr(0x50);
+    LCD_para_wr(0x02);
+    LCD_Cmd_wr(0xBD);
+    LCD_para_wr(0x00);
+    LCD_para_wr(0x00);
+    LCD_Cmd_wr(0xBC);
+    LCD_para_wr(0x00);
+    LCD_para_wr(0x00);
+LCD_Cmd_wr(0x29); 
+
+    LCD_Cmd_wr(0xBD);
+    LCD_para_wr(0x17);
+    LCD_para_wr(0x00);
+    LCD_Cmd_wr(0xBC);
+    LCD_para_wr(0x00);
+    LCD_para_wr(0xBB);
+    LCD_Cmd_wr(0xBE);
+    LCD_para_wr(0xD0);
+    LCD_para_wr(0x02);
+LCD_Cmd_wr(0x2C); 

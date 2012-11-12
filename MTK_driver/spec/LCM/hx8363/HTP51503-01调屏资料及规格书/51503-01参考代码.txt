@@ -1,0 +1,303 @@
+void Lcd_SPI_Cmd_HX8363A(unsigned long cmd)
+{ 
+	int i;
+
+  	Lcd_SPI_CS_HIGH;
+	Lcd_SPI_SCL_HIGH;
+	Lcd_SPI_SCL_HIGH;
+	Delayms(1);
+
+	Lcd_SPI_CS_LOW;
+	Delayms(1);
+
+	Lcd_SPI_SDI_LOW;
+	Lcd_SPI_SCL_LOW;
+	Lcd_SPI_SCL_HIGH;
+	
+	for(i=0;i<8;i++)
+	{
+		if((cmd & 0x80)!=0)
+		{
+			Lcd_SPI_SDI_HIGH;
+		}
+		else
+		{
+			Lcd_SPI_SDI_LOW;
+		}
+		Lcd_SPI_SCL_LOW;
+		Lcd_SPI_SCL_HIGH;
+
+		cmd=cmd<<1;
+	}
+  	Lcd_SPI_CS_HIGH;
+}
+
+
+void Lcd_SPI_Data_HX8363A(unsigned long data)
+{
+	int i;
+
+  	Lcd_SPI_CS_HIGH;
+	Lcd_SPI_SCL_HIGH;
+	Lcd_SPI_SCL_HIGH;
+	Delayms(1);
+
+	Lcd_SPI_CS_LOW;
+	Delayms(1);
+
+	Lcd_SPI_SDI_HIGH;
+	Lcd_SPI_SCL_LOW;
+	Lcd_SPI_SCL_HIGH;
+	
+	for(i=0;i<8;i++)
+	{
+		if((data & 0x80)!=0)
+		{
+			Lcd_SPI_SDI_HIGH;
+		}
+		else
+		{
+			Lcd_SPI_SDI_LOW;
+		}
+		Lcd_SPI_SCL_LOW;
+		Lcd_SPI_SCL_HIGH;
+
+		data=data<<1;
+	}
+  	Lcd_SPI_CS_HIGH;
+}
+
+
+void Lcd_Init_HX8363A()
+{
+	//Set_EXTC
+	Lcd_SPI_Cmd_HX8363A(0xB9);
+	Lcd_SPI_Data_HX8363A(0xFF);
+	Lcd_SPI_Data_HX8363A(0x83);
+	Lcd_SPI_Data_HX8363A(0x63);
+
+	//Set_POWER
+	Lcd_SPI_Cmd_HX8363A(0xB1);
+	Lcd_SPI_Data_HX8363A(0x81);
+	Lcd_SPI_Data_HX8363A(0x30);
+	Lcd_SPI_Data_HX8363A(0x07);
+	Lcd_SPI_Data_HX8363A(0x34);
+	Lcd_SPI_Data_HX8363A(0x02);
+	Lcd_SPI_Data_HX8363A(0x13);
+	Lcd_SPI_Data_HX8363A(0x11);
+	Lcd_SPI_Data_HX8363A(0x00);
+	Lcd_SPI_Data_HX8363A(0x1A); //
+	Lcd_SPI_Data_HX8363A(0x22); //
+	Lcd_SPI_Data_HX8363A(0x3F);
+	Lcd_SPI_Data_HX8363A(0x3F);
+
+	//Set COLMOD
+	Lcd_SPI_Cmd_HX8363A(0x3A);
+	Lcd_SPI_Data_HX8363A(0x70);
+
+	//Set_RGBIF
+	Lcd_SPI_Cmd_HX8363A(0xB3);
+	Lcd_SPI_Data_HX8363A(0x01);
+
+	//Set_CYC
+	Lcd_SPI_Cmd_HX8363A(0xB4);
+	Lcd_SPI_Data_HX8363A(0x08); // Inversion type setting
+	Lcd_SPI_Data_HX8363A(0x12);
+	Lcd_SPI_Data_HX8363A(0x72);
+	Lcd_SPI_Data_HX8363A(0x12);
+	Lcd_SPI_Data_HX8363A(0x06);
+	Lcd_SPI_Data_HX8363A(0x03);
+	Lcd_SPI_Data_HX8363A(0x54);
+	Lcd_SPI_Data_HX8363A(0x03);
+	Lcd_SPI_Data_HX8363A(0x4E);
+	Lcd_SPI_Data_HX8363A(0x00);
+	Lcd_SPI_Data_HX8363A(0x00);
+
+	//Set_PTBA
+	Lcd_SPI_Cmd_HX8363A(0xBF);
+	Lcd_SPI_Data_HX8363A(0x00);
+	Lcd_SPI_Data_HX8363A(0x10);
+
+	//Set_VCOM
+	Lcd_SPI_Cmd_HX8363A(0xB6);
+	Lcd_SPI_Data_HX8363A(0x22);
+
+	//Set Memory Access
+	Lcd_SPI_Cmd_HX8363A(0x36);
+	Lcd_SPI_Data_HX8363A(0x0A); // ×ª180¶È 0x09
+	Delayms(5);
+
+	//Set Gamma 2.2
+	Lcd_SPI_Cmd_HX8363A(0xE0);
+	Lcd_SPI_Data_HX8363A(0x00);
+	Lcd_SPI_Data_HX8363A(0x1E);
+	Lcd_SPI_Data_HX8363A(0x63);
+	Lcd_SPI_Data_HX8363A(0x15);
+	Lcd_SPI_Data_HX8363A(0x13);
+	Lcd_SPI_Data_HX8363A(0x30);
+	Lcd_SPI_Data_HX8363A(0x0C);
+	Lcd_SPI_Data_HX8363A(0xCF);
+	Lcd_SPI_Data_HX8363A(0x0F);
+	Lcd_SPI_Data_HX8363A(0xD5);
+	Lcd_SPI_Data_HX8363A(0x17);
+	Lcd_SPI_Data_HX8363A(0xD5);
+	Lcd_SPI_Data_HX8363A(0x96);
+	Lcd_SPI_Data_HX8363A(0xD1);
+	Lcd_SPI_Data_HX8363A(0x17);
+	Lcd_SPI_Data_HX8363A(0x00);
+	Lcd_SPI_Data_HX8363A(0x1E);
+	Lcd_SPI_Data_HX8363A(0x63);
+	Lcd_SPI_Data_HX8363A(0x15);
+	Lcd_SPI_Data_HX8363A(0x13);
+	Lcd_SPI_Data_HX8363A(0x30);
+	Lcd_SPI_Data_HX8363A(0x0C);
+	Lcd_SPI_Data_HX8363A(0xCF);
+	Lcd_SPI_Data_HX8363A(0x0F);
+	Lcd_SPI_Data_HX8363A(0xD5);
+	Lcd_SPI_Data_HX8363A(0x17);
+	Lcd_SPI_Data_HX8363A(0xD5);
+	Lcd_SPI_Data_HX8363A(0x96);
+	Lcd_SPI_Data_HX8363A(0xD1);
+	Lcd_SPI_Data_HX8363A(0x17);
+	Delayms(5);
+
+	Lcd_SPI_Cmd_HX8363A(0xC1); //DGC
+	Lcd_SPI_Data_HX8363A(0x01);
+
+	Lcd_SPI_Data_HX8363A(0x00 );
+	Lcd_SPI_Data_HX8363A(0x01 );
+	Lcd_SPI_Data_HX8363A(0x04 );
+	Lcd_SPI_Data_HX8363A(0x09 );
+	Lcd_SPI_Data_HX8363A(0x10 );
+	Lcd_SPI_Data_HX8363A(0x18 );
+	Lcd_SPI_Data_HX8363A(0x1F );
+	Lcd_SPI_Data_HX8363A(0x28 );
+	Lcd_SPI_Data_HX8363A(0x2E );
+	Lcd_SPI_Data_HX8363A(0x34 );
+	Lcd_SPI_Data_HX8363A(0x3C );
+	Lcd_SPI_Data_HX8363A(0x43 );
+	Lcd_SPI_Data_HX8363A(0x4B );
+	Lcd_SPI_Data_HX8363A(0x52 );
+	Lcd_SPI_Data_HX8363A(0x5A );
+	Lcd_SPI_Data_HX8363A(0x61 );
+	Lcd_SPI_Data_HX8363A(0x69 );
+	Lcd_SPI_Data_HX8363A(0x72 );
+	Lcd_SPI_Data_HX8363A(0x79 );
+	Lcd_SPI_Data_HX8363A(0x82 );
+	Lcd_SPI_Data_HX8363A(0x8A );
+	Lcd_SPI_Data_HX8363A(0x93 );
+	Lcd_SPI_Data_HX8363A(0x9D );
+	Lcd_SPI_Data_HX8363A(0xA6 );
+	Lcd_SPI_Data_HX8363A(0xAF );
+	Lcd_SPI_Data_HX8363A(0xB7 );
+	Lcd_SPI_Data_HX8363A(0xC3 );
+	Lcd_SPI_Data_HX8363A(0xCB );
+	Lcd_SPI_Data_HX8363A(0xD6 );
+	Lcd_SPI_Data_HX8363A(0xE1 );
+	Lcd_SPI_Data_HX8363A(0xEC );
+	Lcd_SPI_Data_HX8363A(0xF6 );
+	Lcd_SPI_Data_HX8363A(0xFF );
+	Lcd_SPI_Data_HX8363A(0x17 );
+	Lcd_SPI_Data_HX8363A(0x68 );
+	Lcd_SPI_Data_HX8363A(0x89 );
+	Lcd_SPI_Data_HX8363A(0xD8 );
+	Lcd_SPI_Data_HX8363A(0x0E );
+	Lcd_SPI_Data_HX8363A(0x70 );
+	Lcd_SPI_Data_HX8363A(0x13 );
+	Lcd_SPI_Data_HX8363A(0x37 );
+	Lcd_SPI_Data_HX8363A(0x03 );
+
+	Lcd_SPI_Data_HX8363A(0x00 );
+	Lcd_SPI_Data_HX8363A(0x01 );
+	Lcd_SPI_Data_HX8363A(0x04 );
+	Lcd_SPI_Data_HX8363A(0x09 );
+	Lcd_SPI_Data_HX8363A(0x10 );
+	Lcd_SPI_Data_HX8363A(0x18 );
+	Lcd_SPI_Data_HX8363A(0x1F );
+	Lcd_SPI_Data_HX8363A(0x28 );
+	Lcd_SPI_Data_HX8363A(0x2E );
+	Lcd_SPI_Data_HX8363A(0x34 );
+	Lcd_SPI_Data_HX8363A(0x3C );
+	Lcd_SPI_Data_HX8363A(0x43 );
+	Lcd_SPI_Data_HX8363A(0x4B );
+	Lcd_SPI_Data_HX8363A(0x52 );
+	Lcd_SPI_Data_HX8363A(0x5A );
+	Lcd_SPI_Data_HX8363A(0x61 );
+	Lcd_SPI_Data_HX8363A(0x69 );
+	Lcd_SPI_Data_HX8363A(0x72 );
+	Lcd_SPI_Data_HX8363A(0x79 );
+	Lcd_SPI_Data_HX8363A(0x82 );
+	Lcd_SPI_Data_HX8363A(0x8A );
+	Lcd_SPI_Data_HX8363A(0x93 );
+	Lcd_SPI_Data_HX8363A(0x9D );
+	Lcd_SPI_Data_HX8363A(0xA6 );
+	Lcd_SPI_Data_HX8363A(0xAF );
+	Lcd_SPI_Data_HX8363A(0xB7 );
+	Lcd_SPI_Data_HX8363A(0xC3 );
+	Lcd_SPI_Data_HX8363A(0xCB );
+	Lcd_SPI_Data_HX8363A(0xD6 );
+	Lcd_SPI_Data_HX8363A(0xE1 );
+	Lcd_SPI_Data_HX8363A(0xEC );
+	Lcd_SPI_Data_HX8363A(0xF6 );
+	Lcd_SPI_Data_HX8363A(0xFF );
+	Lcd_SPI_Data_HX8363A(0x17 );
+	Lcd_SPI_Data_HX8363A(0x68 );
+	Lcd_SPI_Data_HX8363A(0x89 );
+	Lcd_SPI_Data_HX8363A(0xD8 );
+	Lcd_SPI_Data_HX8363A(0x0E );
+	Lcd_SPI_Data_HX8363A(0x70 );
+	Lcd_SPI_Data_HX8363A(0x13 );
+	Lcd_SPI_Data_HX8363A(0x37 );
+	Lcd_SPI_Data_HX8363A(0x03 );
+
+	Lcd_SPI_Data_HX8363A(0x00 );
+	Lcd_SPI_Data_HX8363A(0x01 );
+	Lcd_SPI_Data_HX8363A(0x04 );
+	Lcd_SPI_Data_HX8363A(0x09 );
+	Lcd_SPI_Data_HX8363A(0x10 );
+	Lcd_SPI_Data_HX8363A(0x18 );
+	Lcd_SPI_Data_HX8363A(0x1F );
+	Lcd_SPI_Data_HX8363A(0x28 );
+	Lcd_SPI_Data_HX8363A(0x2E );
+	Lcd_SPI_Data_HX8363A(0x34 );
+	Lcd_SPI_Data_HX8363A(0x3C );
+	Lcd_SPI_Data_HX8363A(0x43 );
+	Lcd_SPI_Data_HX8363A(0x4B );
+	Lcd_SPI_Data_HX8363A(0x52 );
+	Lcd_SPI_Data_HX8363A(0x5A );
+	Lcd_SPI_Data_HX8363A(0x61 );
+	Lcd_SPI_Data_HX8363A(0x69 );
+	Lcd_SPI_Data_HX8363A(0x72 );
+	Lcd_SPI_Data_HX8363A(0x79 );
+	Lcd_SPI_Data_HX8363A(0x82 );
+	Lcd_SPI_Data_HX8363A(0x8A );
+	Lcd_SPI_Data_HX8363A(0x93 );
+	Lcd_SPI_Data_HX8363A(0x9D );
+	Lcd_SPI_Data_HX8363A(0xA6 );
+	Lcd_SPI_Data_HX8363A(0xAF );
+	Lcd_SPI_Data_HX8363A(0xB7 );
+	Lcd_SPI_Data_HX8363A(0xC3 );
+	Lcd_SPI_Data_HX8363A(0xCB );
+	Lcd_SPI_Data_HX8363A(0xD6 );
+	Lcd_SPI_Data_HX8363A(0xE1 );
+	Lcd_SPI_Data_HX8363A(0xEC );
+	Lcd_SPI_Data_HX8363A(0xF6 );
+	Lcd_SPI_Data_HX8363A(0xFF );
+	Lcd_SPI_Data_HX8363A(0x17 );
+	Lcd_SPI_Data_HX8363A(0x68 );
+	Lcd_SPI_Data_HX8363A(0x89 );
+	Lcd_SPI_Data_HX8363A(0xD8 );
+	Lcd_SPI_Data_HX8363A(0x0E );
+	Lcd_SPI_Data_HX8363A(0x70 );
+	Lcd_SPI_Data_HX8363A(0x13 );
+	Lcd_SPI_Data_HX8363A(0x37 );
+	Lcd_SPI_Data_HX8363A(0x03 );
+	Delayms(5);
+
+	//Sleep Out
+	Lcd_SPI_Cmd_HX8363A(0x11);
+	Delayms(120);
+
+	//Display On
+	Lcd_SPI_Cmd_HX8363A(0x29);
+}

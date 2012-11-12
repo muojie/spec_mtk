@@ -1,0 +1,95 @@
+
+*************************************************/
+void LCD_Initial_HX8357B_HSD35(void) 
+{ 
+	All Power On();    // VCI=IOVCC=2.8V 
+	DelayX1ms(10); 
+
+	HW_RESET();    // Hardware Reset 
+	DelayX1ms(10);  
+	
+	LCD_Cmd_wr(0x11);  //Sleep Out 
+	DelayX1ms(120);      
+	 
+	LCD_Cmd_wr(0xB4);  //Set RM, DM 
+	LCD_Data_wr(0x00);  //  
+	 
+	LCD_Cmd_wr(0xC0);  //Set PANEL 
+	LCD_Data_wr(0x14); 
+	LCD_Data_wr(0x3B); 
+	LCD_Data_wr(0x00); 
+	LCD_Data_wr(0x02); 
+	LCD_Data_wr(0x11);
+
+	LCD_Cmd_wr(0xC8);  //Set Gamma 
+	LCD_Data_wr(0x00); 
+	LCD_Data_wr(0x56); //5e
+	LCD_Data_wr(0x12); 
+	LCD_Data_wr(0x23); 
+	LCD_Data_wr(0x00); 
+	LCD_Data_wr(0x0f); 
+	LCD_Data_wr(0x36); 
+	LCD_Data_wr(0x02); 
+	LCD_Data_wr(0x75); 
+	LCD_Data_wr(0x12); 
+	LCD_Data_wr(0x07); 
+	LCD_Data_wr(0x00);
+	 
+	LCD_Cmd_wr(0xD0);  //Set Power 
+	LCD_Data_wr(0x44);  //DDVDH  
+	LCD_Data_wr(0x41);   //  
+	LCD_Data_wr(0x05);   //VREG1 
+	 
+	LCD_Cmd_wr(0xD1);  //Set VCOM 
+	LCD_Data_wr(0x26);   //VCOMH 
+	LCD_Data_wr(0x10);   //VCOML 
+	 
+	LCD_Cmd_wr(0xD2);  //Set NOROW 
+	LCD_Data_wr(0x05);   //SAP 
+	LCD_Data_wr(0x12);   //DC10/00 
+	 
+	LCD_Cmd_wr(0xE9);  //Set Panel 
+	LCD_Data_wr(0x01); 
+	 
+	LCD_Cmd_wr(0xEA);  //Set STBA 
+	LCD_Data_wr(0x03); 
+	LCD_Data_wr(0x00); 
+	LCD_Data_wr(0x00); 
+	 
+	LCD_Cmd_wr(0x29);  //Display On 
+	DelayX1ms(5); 
+	
+	LCD_Cmd_wr(0x2C);
+} 
+
+/***************************************************************************************
+void LCD_Window_Set(int x0,int y0,int x1,int y1) // x0¡¢y0 start ,x1¡¢y1 end.
+{
+LCD_Cmd_wr(0x2A);
+LCD_Data_wr(x0>>8);
+LCD_Data_wr(x0);
+LCD_Data_wr(x1>>8);
+LCD_Data_wr(x1);
+
+LCD_Cmd_wr(0x2B);
+LCD_Data_wr(y0>>8);
+LCD_Data_wr(y0);
+LCD_Data_wr(y1>>8);
+LCD_Data_wr(y1);
+
+LCD_Cmd_wr(0x2C);
+}
+
+Sleep In
+void Sleep_In_Function(void)   //Sleep In
+{
+LCD_Cmd_wr(0x10);
+DelayX1ms(120);
+}
+
+Sleep Out
+void Sleep_Out_Function(void)  //Sleep Out
+{
+LCD_Cmd_wr(0x11);
+DelayX1ms(120);
+}
