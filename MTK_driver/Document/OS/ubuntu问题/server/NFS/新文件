@@ -1,0 +1,75 @@
+摘自：http://hi.baidu.com/wangy0919/blog/item/79e726c68c1efc199d163d98.html
+
+
+安装NFS
+Debian/Ubuntu上默认是没有安装NFS服务器的，首先要安装NFS服务程序：
+$ sudo apt-get install nfs-kernel-server
+(安装nfs-kernel-server时，apt会自动安装nfs-common和portmap）
+这样，宿主机就相当于NFS Server。
+   
+同样地，目标系统作为NFS的客户端，需要安装NFS客户端程序。如果是Debian/Ubuntu系统，则需要安装nfs-common。
+$ sudo apt-get install nfs-commmon
+
+nfs-common和nfs-kernel-server都依赖于portmap!
+
+配置NFS
+配置portmap
+
+方法1: 编辑/etc/default/portmap, 将 -i 127.0.0.1 去掉.
+
+方法2: $ sudo dpkg-reconfigure portmap , 对Should portmap be bound to the loopback address? 选N.
+
+配置/etc/hosts.deny
+（禁止任何host（主机）能和你的NFS服务器进行NFS连接)，加入：
+### NFS DAEMONS
+
+portmap:ALL
+
+lockd:ALL
+
+mountd:ALL
+
+rquotad:ALL
+
+statd:ALL
+
+配 置/etc/hosts.allow
+允许那些你想要的主机和你的NFS服务器建立连接。下列步骤将允许任何IP地址以192.168.2开头的主机（连 接到NFS服务器上），也可以指定特定的IP地址。参看man页 hosts_access(5), hosts_options(5)。加入：
+### NFS DAEMONS
+
+portmap: 192.168.2.
+
+lockd: 192.168.2.
+
+rquotad: 192.168.2.
+
+mountd: 192.168.2.
+
+statd: 192.168.2.
+
+/etc/hosts.deny 和 /etc/hosts.allow 设置对portmap的访问. 采用这两个配置文件有点类似"mask"的意思. 现在/etc/hosts.deny中禁止所有用户对portmap的访问. 再在/etc/hosts.allow 中允许某些用户对portmap的访问.
+运行 $ sudo /etc/init.d/portmap restart 重启portmap daemon.
+
+配置/etc/exports
+NFS挂载目录及权限由/etc/exports文件定义
+   
+比如我要将将我的home目录中的/home/zp/share目录让192.168.2.*的IP共享, 则在该文件末尾添加下列语句：
+         /home/zp/share    192.168.2.*(rw,sync,no_root_squash)
+或者：/home/zp/share    192.168.2.0/24(rw,sync,no_root_squash)
+
+192.168.2.* 网段内的NFS客户端能够共享NFS服务器/home/zp/share目录内容.且有读,写权限, 并且该用户进入/home/zp/share目录后的身份为root
+最好加上sync, 否则 $ sudo exportfs -r 时会给出警告, sync是NFS的默认选项.
+
+(运行 $ showmount -e 查看NFS server的export list.
+
+若更改了/etc/exports, 运行 $ sudo exportfs -r 更新
+
+运行 $ sudo /etc/init.d/nfs-kernel-server restart 重启nfs服务)
+
+/etc/exports实际上就是nfs服务器的核心配置文件了. 鸟哥的Linux私房菜列举了一些exports文件的写法.
+
+测试NFS
+可以尝试一下挂载本地磁盘(假设本地主机IP地址为：192.128.2.1，将/home/zp/share挂载到/mnt)
+$ sudo mount 192.168.2.1:/home/zp/share /mnt
+运行 $ df 看看结果
+$ sudo umount /mnt

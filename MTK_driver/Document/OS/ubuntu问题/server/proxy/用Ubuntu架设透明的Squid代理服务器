@@ -1,0 +1,106 @@
+摘自：http://yp.oss.org.cn/blog/show_resource.php?resource_id=181
+
+Squid是全功能的HTTP/1.0代理服务器，也近乎完整的兼容HTTP/1.1。Squid提供丰富的访问控制、认证和日志环境用以网站代理服务器和内容服务应用。
+
+本文简单介绍了如何架设一台透明Squid代理服务器。Squid可用于HTTP，HTTPS，FTP等网站的缓存代理服务器。它能通过缓存和重用那些经常被访问的网页l来降低带宽，改善反应速度。Squid有很强的访问控制，是一个出色的服务器加速器。
+
+安装Squid
+安装squid和squid-common
+sudo aptitude install squid squid-common
+
+编辑squid配置文件
+sudo vi /etc/squid/squid.conf
+
+设置允许的网站
+acl internal_network src 192.168.1.0/24
+http_access allow internal_network
+上面的192.168.1.0/24是指你的IP范围。
+
+设置正确的权限
+
+sudo chown -R proxy:proxy /var/log/squid/
+sudo chown proxy:proxy /etc/squid/squid.conf
+
+需要重启生效
+sudo /etc/init.d/squid restart
+
+现在打开网页浏览器，设置代理服务器为新的squid服务器，端口为3218
+
+认证
+
+如果要给squid代理服务器添加认证功能，你需要安装apache2 utilities
+sudo aptitude install squid squid-common apache2-utils
+添加第一个用户，你需要指定-c
+
+sudo htpasswd -c /etc/squid.passwd first_user
+
+以后再添加用户
+
+sudo htpasswd /etc/squid.passwd another_user
+
+编辑squid配置文件
+
+sudo vi /etc/squid/squid.conf
+
+设置认证参数和acl
+
+auth_param basic program /usr/lib/squid/ncsa_auth /etc/squid.passwd
+auth_param basic children 5
+auth_param basic realm NFYE Squid proxy-caching web server
+auth_param basic credentialsttl 3 hours
+auth_param basic casesensitive off
+acl users proxy_auth REQUIRED
+acl sectionx proxy_auth REQUIRED
+http_access allow users
+
+至此，你的squid.conf文件内容应该类似下面
+
+acl all src 0.0.0.0/0.0.0.0
+acl internal_network src 192.168.1.0/24
+acl users proxy_auth REQUIRED
+acl manager proto cache_object
+acl localhost src 127.0.0.1/255.255.255.255
+acl to_localhost dst 127.0.0.0/8
+acl SSL_ports port 443 563 # https, snews
+acl SSL_ports port 873 # rsync
+acl Safe_ports port 80 # http
+acl Safe_ports port 21 # ftp
+acl Safe_ports port 443 563 # https, snews
+acl Safe_ports port 70 # gopher
+acl Safe_ports port 210 # wais
+acl Safe_ports port 1025-65535 # unregistered ports
+acl Safe_ports port 280 # http-mgmt
+acl Safe_ports port 488 # gss-http
+acl Safe_ports port 591 # filemaker
+acl Safe_ports port 777 # multiling http
+acl Safe_ports port 631 # cups
+acl Safe_ports port 873 # rsync
+acl Safe_ports port 901 # SWAT
+acl sectionx proxy_auth REQUIRED
+acl purge method PURGE
+acl CONNECT method CONNECT
+http_access allow manager localhost
+http_access allow users
+http_access allow internal_network
+http_access deny manager
+http_access allow purge localhost
+http_access deny purge
+http_access deny !Safe_ports
+http_access deny CONNECT !SSL_ports
+http_access allow localhost
+http_access deny all
+http_reply_access allow all
+icp_access allow all
+
+重定向所有HTTP通讯
+如果你需要在你所有应用程序里使用代理服务器又不想手动设置，你需要添加如下规则
+
+iptables -t nat -A PREROUTING -i eth1 -p tcp -m tcp --dport 80 -j DNAT --to-destination 192.168.0.1:3128
+iptables -t nat -A PREROUTING -i eth0 -p tcp -m tcp –dport 80 -j REDIRECT --to-ports 3128
+
+在这里，eth1和eth0分别对应LAN接口和WAN接口，192.168.0.1是LAN设备的IP。
+
+如果你要监控代理服务器的性能，你可以使用一些日志分析工具，比如sarg，calamaris等等。
+
+原文: http://www.ubuntugeek.com/how-to-setup-transparent-squid-proxy-server-in-ubuntu.html
+翻译: 马钢的博客

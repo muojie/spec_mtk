@@ -1,0 +1,17 @@
+下载代码：
+
+1.安装repo:
+
+> curl http://git-repo.googlecode.com/files/repo-1.12 > ~/bin/repo
+
+> chmod 755 ~/bin/repo
+
+如果遇到问题，请查看该网页的2～7步：http://hi.baidu.com/lizhengjun2010/blog/item/0b84aa406f2d579eb2b7dcf7.html
+
+2.repo init:
+
+> repo init -u git://192.168.1.110/Android/manifest.git
+
+3.repo sync:
+
+> repo sync

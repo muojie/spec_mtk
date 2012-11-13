@@ -1,0 +1,27 @@
+
+
+不能新建远程分支：
+
+muojie@muojie-desktop:~/src/123/mediatek$ git push origin HEAD:dp300
+error: unable to push to unqualified destination: dp300
+The destination refspec neither matches an existing ref on the remote nor
+begins with refs/, and we are unable to guess a prefix based on the source ref.
+error: failed to push some refs to 'git://192.168.1.110/Android/mediatek'
+
+
+不能删除远程分支：
+
+muojie@muojie-desktop:~/src/123/mediatek$ git push origin :master
+remote: error: By default, deleting the current branch is denied, because the next
+remote: error: 'git clone' won't result in any file checked out, causing confusion.
+remote: error: 
+remote: error: You can set 'receive.denyDeleteCurrent' configuration variable to
+remote: error: 'warn' or 'ignore' in the remote repository to allow deleting the
+remote: error: current branch, with or without a warning message.
+remote: error: 
+remote: error: To squelch this message, you can set it to 'refuse'.
+remote: error: refusing to delete the current branch: refs/heads/master
+To git://192.168.1.110/Android/mediatek
+ ! [remote rejected] master (deletion of the current branch prohibited)
+error: failed to push some refs to 'git://192.168.1.110/Android/mediatek'
+

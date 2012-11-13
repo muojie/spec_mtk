@@ -1,0 +1,1 @@
+在服务端正确添加一个工程并设置好权限后，在客户端机器上执行git clone git@hostname:pilot.git时出现一个错误： fatal: 'pilot.git' does not appear to be a git repository fatal: The remote end hung up unexpectedly 解决方法是使用全路径： git clone git@hostname:/home/git/pilot.git

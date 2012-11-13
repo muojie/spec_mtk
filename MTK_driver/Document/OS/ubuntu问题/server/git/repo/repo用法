@@ -1,0 +1,43 @@
+repo的用法
+注：repo只是google用Python脚本写的调用git的一个脚本，主要是用来下载、管理Android项目的软件仓库。(也就是说，他是用来管理给git管理的一个个仓库的)
+下载 repo 的地址: http://android.git.kernel.org/repo ，可以用以下二者之一来下载 repo
+wget http://android.git.kernel.org/repo 
+或者 
+curl http://android.git.kernel.org/repo > ~/bin/repo  
+下载完成后须修改repo的权限： chmod a+x ~/bin/repo 
+用repo sync 在抓去 android source code 的时候，会经常出现一些错误导致 repo sync 中断，每次都要手动开始。 可以用如下的命令，来自动重复
+$?=1; 
+while [ $? -ne 0 ] ; 
+do  repo sync ; 
+done
+获取帮助：
+repo help [ command ]   //显示command 的详细的帮助信息内容
+示例： repo help init 来获取 repo init 的其他用法
+repo init -u URL 用以在当前目录安装 repository ，会在当前目录创建一个目录 ".repo"  -u 参数指定一个URL， 从这个URL 中取得repository 的 manifest 文件。   
+示例：repo init -u git://android.git.kernel.org/platform/manifest.git
+获取的manifest文件放在.repo目录中。命名为manifest.xml。这个文件的内容其实就是所有被git管理的仓库的列表！
+可以用 -m 参数来选择获取 repository 中的某一个特定的 manifest 文件，如果不具体指定，那么表示为默认的 namifest 文件 (default.xml)
+repo init -u git://android.git.kernel.org/platform/manifest.git -m dalvik-plus.xml
+(有诸多供我们选择的manifest文件，所有的manifest文件都放在目录.repo/manifests中，该目录本身亦被git所管理，你可以cd进去看看)
+可以用 -b 参数来指定某个manifest 分支。
+repo init -u git://android.git.kernel.org/platform/manifest.git -b release-1.0
+你会发现.repo/manifests是个被git管理的仓库，这里放的是所有的manifest文件（*.xml），因为被git管理，固然有分支，-b可以切换到你想要的分支然后再下载相关的xml文件，当然具体下载那个xml还要看-m参数了，所以如果你仅仅指定-b而没有-m的话，就是下载-b指定分支下的default.xml文件
+如果不指定-b参数，那么会默认使用master分支
+4. repo sync [project-list]
+下载最新本地工作文件，更新成功，这本地文件和repository 中的代码是一样的。 可以指定需要更新的project ， 如果不指定任何参数，会同步整个所有的项目。
+如果是第一次运行 repo sync ， 则这个命令相当于 git clone ，会把 repository 中的所有内容都拷贝到本地。 如果不是第一次运行 repo sync ， 则相当于 git remote update ;  git rebase origin/branch .  repo sync 会更新 .repo 下面的文件。 如果在merge 的过程中出现冲突， 这需要手动运行  git  rebase --continue
+5. repo update[ project-list ]
+上传修改的代码 ，如果你本地的代码有所修改，那么在运行 repo sync 的时候，会提示你上传修改的代码，所有修改的代码分支会上传到 Gerrit (基于web 的代码review 系统), Gerrit 受到上传的代码，会转换为一个个变更，从而可以让人们来review 修改的代码。
+6. repo diff [ project-list ]
+        显示提交的代码和当前工作目录代码之间的差异。
+7. repo download  target revision
+        下载特定的修改版本到本地， 例如:  repo download pltform/frameworks/base 1241 下载修改版本为 1241 的代码
+8. repo start newbranchname .
+        创建新的branch分支。 "." 代表当前工作的branch 分支。
+9.  repo prune [project list]
+        删除已经merge 的 project
+10. repo foreach [ project-lists] -c command
+       对每一个 project 运行 command 命令
+12. repo forall -c 
+11. repo status
+       显示 project 中每个仓库的状态，并打印仓库名称。

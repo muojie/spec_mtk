@@ -1,0 +1,61 @@
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+	下载代码：
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+1.安装repo:
+
+> mkdir ~/bin/
+
+> curl http://git-repo.googlecode.com/files/repo-1.12 > ~/bin/repo
+
+> chmod 755 ~/bin/repo
+
+添加~/bin/目录到环境变量PATH
+
+如果遇到问题，请查看该网页的2～7步：http://hi.baidu.com/lizhengjun2010/blog/item/0b84aa406f2d579eb2b7dcf7.html
+
+2.repo init:
+
+> repo init -u git://192.168.1.110/Android/manifest.git
+
+3.repo sync:
+
+> repo sync
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+	git 相关命令：
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+1. git branch
+
+git branch 可以查看本地现在的分支，可自己工作在哪个分支
+
+git branch -av 可以查看本地和远程的分支，以及本地和远程默认在哪个分支
+
+git branch new_branch_name  可以本地创建new_branch_name的分支
+
+git branch -D branch_name 可以删除本地的branch_name分支
+
+
+2.git checkout branch_name 可以切换到branch_name的分支，该命令用于在各分支间切换
+
+3.git log 可以查看当前分支上的commit信息
+
+4.git status 可以查看当前更改的，并没有commit的文件名
+
+5.git diff 可以查看当前更改的，并没有commit的文件详细信息
+
+6.git add . 添加当前目录下所有更改过的文件，准备commit
+
+git add filename 添加filename，准备commit
+
+7.git commit 对当前添加的文件，进行commit
+
+8.git push remote_name local_branch:remote_branch
+
+把本地local_branch分支的commit信息提交到远程remote_name服务器的remote_branch分支
+
+
+这些只是大概的一些命令，详细的可以在网上搜索一下或者问我。
+
+另外，git有个图形化的工具，gitk，直接输入gitk命令就可以，如果没有可以用apt-get下载。

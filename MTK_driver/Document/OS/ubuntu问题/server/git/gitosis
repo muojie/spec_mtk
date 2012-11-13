@@ -1,0 +1,20 @@
+git@192.168.1.110's password: 
+remote: INFO:gitosis.run_hook:Running hook post-update
+remote: DEBUG:gitosis.gitdaemon:Global default is 'deny'
+remote: DEBUG:gitosis.gitdaemon:Walking '.', seeing ['gitosis-admin.git', 'apps.git', 'teamwork.git', 'Android']
+remote: DEBUG:gitosis.gitdaemon:Deny 'gitosis-admin'
+remote: DEBUG:gitosis.gitdaemon:Deny 'apps'
+remote: DEBUG:gitosis.gitdaemon:Deny 'teamwork'
+remote: DEBUG:gitosis.gitdaemon:Walking 'Android', seeing ['framework.git', 'mediatek-dp500.git', 'packages.git', 'mediatek.git']
+remote: DEBUG:gitosis.gitdaemon:Deny 'Android/framework'
+remote: DEBUG:gitosis.gitdaemon:Deny 'Android/mediatek-dp500'
+remote: DEBUG:gitosis.gitdaemon:Deny 'Android/packages'
+remote: DEBUG:gitosis.gitdaemon:Deny 'Android/mediatek'
+remote: INFO:gitosis.run_hook:Done.
+To git@192.168.1.110:/home/git/repositories/gitosis-admin.git
+ - [deleted]         my_dev
+
+
+
+
+authorized_keys:http://www.iteye.com/blogs/tag/authorized_keys

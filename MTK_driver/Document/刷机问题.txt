@@ -1,0 +1,8 @@
+一、出现以下问题（大部分在格式化之后刷机时会出现），可能就是你编的ROM有问题，就需要找个官方的正式ROM来烧。
+
+FLASHTOOL ERROR ：S—FTHND-FILE—IS-LOADED-YET（5007）
+there is file not loaded yet !!!
+   1.plese check if the da path is correct.
+   2.plese check if all the rom files exist
+   3.plese check if the scatter file description is sync with
+     the exist rom file.

@@ -1,0 +1,10 @@
+repo init -u URL 用以在当前目录安装 repository ，会在当前目录创建一个目录 ".repo"  -u 参数指定一个URL， 从这个URL 中取得repository 的 manifest 文件。   
+示例：repo init -u git://android.git.kernel.org/platform/manifest.git
+获取的manifest文件放在.repo目录中。命名为manifest.xml。这个文件的内容其实就是所有被git管理的仓库的列表！
+可以用 -m 参数来选择获取 repository 中的某一个特定的 manifest 文件，如果不具体指定，那么表示为默认的 namifest 文件 (default.xml)
+repo init -u git://android.git.kernel.org/platform/manifest.git -m dalvik-plus.xml
+(有诸多供我们选择的manifest文件，所有的manifest文件都放在目录.repo/manifests中，该目录本身亦被git所管理，你可以cd进去看看)
+可以用 -b 参数来指定某个manifest 分支。
+repo init -u git://android.git.kernel.org/platform/manifest.git -b release-1.0
+你会发现.repo/manifests是个被git管理的仓库，这里放的是所有的manifest文件（*.xml），因为被git管理，固然有分支，-b可以切换到你想要的分支然后再下载相关的xml文件，当然具体下载那个xml还要看-m参数了，所以如果你仅仅指定-b而没有-m的话，就是下载-b指定分支下的default.xml文件
+如果不指定-b参数，那么会默认使用master分支

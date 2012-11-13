@@ -1,0 +1,4 @@
+代码路径：
+/home/muojie/src/alps/mediatek/platform/mt6573/kernel/drivers/power
+
+驱动会在/sys/devices/power目录下创建调试接口

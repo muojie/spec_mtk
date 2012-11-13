@@ -1,0 +1,74 @@
+摘自：http://blog.sina.com.cn/s/blog_60c70b6c0100y5gr.html
+
+1. 修改最后一次提交
+     git commit --amend
+
+2. git reset HEAD filename  ->  取消已暂存的文件
+      git reset --hard HEAD    -> 如果你现在的工作目录(work tree)里搞的一团乱麻, 但是你现在还没有把它们提交; 你可以通过这条命令, 让工作目录回到上次提交时的状态(last committed state)
+
+3. 取消单个文件修改
+     git checkout -- filename
+     git checkout HEAD~1 filename --> 恢复到上一次修改
+
+4. 删除远程分支
+     git push [远程名] :[分支名]
+
+5. rebase操作
+   http://progit.org/book/zh/ch3-6.html
+   一旦分支中的提交对象发布到公共仓库，就千万不要对该分支进行衍合操作。
+
+6. gitosis远程push错误
+   注意: gitosis 认定的账号, 是 id_rsa.pub 最后面 "xxx@example.com", 以 @ 前面的 "xxx" 为账号(此也是gitosis设定的账号), 若账号不同，git push就会出现如下错误:
+      ERROR:gitosis.serve.main:Repository read access denied
+      fatal: The remote end hung up unexpectedly
+
+7. 一个标签对象包括一个对象名(就是SHA1签名), 对象类型, 标签名, 标签创建人的名字("tagger"), 还有一条可能包含有签名(signature)的消息. 你可以用 git cat-file 命令来查看这些信息:
+    git cat-file tag tag_name
+
+8. git branch -d branch_name    这个命令只能删除那些已经被当前分支合并的分支，如果要强制删除，可使用-D参数
+
+9. git diff：此命令比较的是工作目录中当前文件和暂存区域快照之间的差异，也就是修改之后还没有暂存起来的变化内容。
+    git diff --cached：此命令查看已经暂存起来的文件和上次提交时的快照之间的差异
+    git diff branch_name：查看当前分支同其他分支合并时的完整内容差异
+    git diff branch1..branch2：显示两个分支之前的差异
+    git diff branch1...branch2：显示branch1,branch2共同的父分支与branch2之间的差异
+    git diff HEAD：显示当前工作目录与上次提交时之间的差异
+    git diff HEAD -- ./lib：显示你当前工作目录下的lib目录与上次提交之间的差别(或者更准确的 说是在当前分支)。
+    git diff --stat：统计那些文件被改动了，每个文件改动了多少行
+    git diff HEAD^:a.txt HEAD:a.txt：比较上次提交与上上次提交a文件的差异
+
+10. git branch --merged：查看那些分支已经并入当前分支
+      git branch --no-merged：查看那些分支还未并入当前分支
+
+11. git log -p master..origin/master：显示远程主分支与本地主分支之间的差异
+
+12. git pull与git fetch之间的区别:
+      git pull：拉取数据到本地并合并
+      git fetch: 只拉取数据到本地，并不进行合并
+
+13. 通过git clone获取的远端git库，只包含了远端git库的当前工作分支。如果想获取其它分支信息，需要使用”git branch  –r” 来查看， 如果需要将远程的其它分支代码也获取过来，可以使用命令” git checkout -b 本地分支名 远程分支名”，其中，远程分支名为git branch –r所列出的分支名， 一般是诸如“origin/分支名”的样子。如果本地分支名已经存在， 则不需要“-b”参数。
+
+14. git rev-parse： 是一个底层命令，我们偶尔要将某些称谓翻译成对象名的时候非常有用。
+    如: git rev_parse master   ->   e05db0fd4f31dde7005f075a84f96b360d05984b
+
+15. 查看旧的文件版本: git show v2.5:a.txt  ->显示标签为v2.5所指向的版本中a.txt的文件内容
+
+16. git stash: 临时保存已跟踪的文件
+
+17.  如需要将你本地仓库中的标签信息push到远程服务仓库，那么在git push操作时需要加上"--tags"参数
+     git push --tags
+
+18. 当运行git pull/push时，会操作在".git/config"中配置好的分支。
+    需要注意的是：假设配置好了a，b分支，那么当在a分支运行git pull时，那么本地a分支会自动同步到远程的a分支最新状态，而远程b分支则仅仅是与本地b分支合并，而没有进行快进操作。这个时间可以checkout到b分支，运行git merge host/b，以使其本地分支快进到最新状态.
+
+19. 一些版本控制系统，创建分支很容易，但把分支合并回来很难。使用Git，合并简直是家 常便饭，以至于甚至你可能对其发生没有察觉。
+我们很久之前就遇到合并了。 pull 命令取出提交并合并它们到你的当前分支。如果 你没有本地变更，那这个合并就是一个“快进”，相当于中心式版本控制系统里的一个 弱化的获取最新版本操作。但如有本地变更，Git将自动合并，并报告任何冲突。
+通常，一个提交只有一个“父提交”，也叫前一个提交。合并分支到一起产生一个至少 有两个父的提交。这就引出了问题： HEAD~10 真正指哪个提交？一个提交可能有多个 父，那我们跟哪个呢？
+原来这个表示每次选择第一个父。这是可取的，因为在合并时候当前分支成了第一个父； 多数情况下我们只关注我们在当前分支都改了什么，而不是从其他分支合并来的变更。
+你可以用插入符号来特别指定父。比如，显示来自第二个父的日志：
+$ git log HEAD^2
+你可以忽略数字以指代第一个父。比如，显示与第一个父的差别：
+$ git diff HEAD^
+你可以结合其他类型使用这个记号。比如：
+$ git checkout 1b6d^^2~10 -b ancient
+开始一个新分支 “ancient” ，表示第一个父的第二个父的倒数第十次提交的状态

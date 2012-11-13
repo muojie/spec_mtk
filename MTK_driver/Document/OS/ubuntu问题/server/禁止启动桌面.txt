@@ -1,0 +1,63 @@
+关键字：Linux ubuntu gdm 命令行模式  字符终端模式
+
+台机用的是NVIDIA的显卡，在启动时为花屏，但是可以进入GDM，所以登录和平时的使用没有问题。就是觉得不爽，更新驱动。所以到官方下载了最新的驱动程序，它安装的时候需要关闭gdm和Xorg。
+
+方法1，使用tengcy的方法，永远启动到字符终端模式
+要修改
+“/etc/init/gdm.conf”
+将第13行:
+“stop on runlevel [016]”
+修改为:
+“stop on runlevel [0126]”
+这样就永远启动到字符终端模式，如果想用Xwindow，则在登录后，使用startx启动即可。
+方法2，一次性进入字符终端模式
+在启动时，出现grub2的启动菜单时，选择要启动的Linux内核，按e编辑启动参数。
+recordfail
+insmod reiserfs
+set root='(hd0,6)'
+search --no-floppy --fs-uuid --set eff3706c-c090-4d18-bbc9-88f67cf5e5be
+linux    /boot/vmlinuz-2.6.32-22-generic-pae root=UUID=eff3706c-c090-4d18-bbc9-88f67cf5e5be ro   quiet splash
+initrd    /boot/initrd.img-2.6.32-22-generic-pae
+
+删除quiet splash添加一个text参数
+recordfail
+insmod reiserfs
+set root='(hd0,6)'
+search --no-floppy --fs-uuid --set eff3706c-c090-4d18-bbc9-88f67cf5e5be
+linux    /boot/vmlinuz-2.6.32-22-generic-pae root=UUID=eff3706c-c090-4d18-bbc9-88f67cf5e5be ro   text
+initrd    /boot/initrd.img-2.6.32-22-generic-pae
+即可启动到字符终端模式
+方法2，永远启动到字符终端模式
+如果想用这种方法永远启动到字符终端模式，则可以修改/boot/grub/grub.cfg，在相应的位置添加txt参照即可。但是grub.cfg是自动生成的，所有的在里面的修改都可能被其它的操作覆盖掉，比如update-grub命令，如果不想被覆盖，则修改/etc/default/grub
+把
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+GRUB_CMDLINE_LINUX=""
+改成
+GRUB_CMDLINE_LINUX_DEFAULT="text"
+GRUB_CMDLINE_LINUX=""
+
+然后再运行一下update-grub命令，它会自动添加上text参数到内核参数中。
+
+说明：
+1，无论使用什么方式启动到字符终端模式，你都可以使用命令startx命令来启动Xwindow
+2，在10.04 lucid 下测试成功
+参数的含义（个人猜测，没有在网上找到相关内容）
+quiet 阻止内核输入到命令行
+splash 显示启动画面，如ubuntu logo
+text 启动到字符终端模式
+我的同时写上quiet 和text就起不来，停在checking battery status 下面不动了，也可以我为了测试等待的时间不够长，虽然不动了，可以按CTRL+ALT+DELETE重新启动。如果你了解内核的相关参数含义，请在下边留言。
+
+
+
+
+方法2已经使用，效果很好。但是通过以下方法设置，不管用：
+
+　　取消 GUI 自动启动： 
+
+　　#update-rc.d -f gdm remove 
+
+　　重启后便不会自动进入桌面，此时可用 startx 启动桌面。 
+
+　　恢复 GUI 自动启动： 
+
+　　#update-rc.d gdm defaults 

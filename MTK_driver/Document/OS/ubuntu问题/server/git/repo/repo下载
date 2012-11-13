@@ -1,0 +1,86 @@
+今天应公司要求，修改源码，重新定制Android系统！
+
+呵呵...装了个熟悉的Ubuntu，首先还是把系统弄炫的啦...
+
+下载源码吧！
+
+照着书上的下载源码的步骤做，结果错误n多啊！又百度又谷歌的...弄了一下午，终于开始下载啦！
+
+在这分享一下(部分网上copy的，呵呵...)，希望大家少走弯路啊！
+
+1.安装git
+
+sudo apt-get install git-core
+
+2.安装curl
+
+sudo apt-get install git-core curl
+
+3.安装repo, 通过curl下载repo
+
+网上或者很多书籍上都是这样写的：
+
+curl http://android.git.kernel.org/repo > ~/bin/repo
+
+结果得到的repo不能用，什么301重定向的，唉！悲催啊！后来在csdn上发了个贴子，大牛给解决啦！
+
+http://code.google.com/p/git-repo/downloads/detail?name=repo-1.12 这个链接提供下载repo！
+
+也可以通过下面命令得到：
+
+curl http://git-repo.googlecode.com/files/repo-1.12 > ~/bin/repo
+
+4.修改执行权限
+
+chmod a+x ~/bin/repo
+
+5.修改~/bin/repo文件将第五行
+
+这一步又是容易出错啊，哥就死在这里很久啊！很多书籍或网站上都是这样命令：
+
+~/bin/repo init -u git://android.git.kernel.org/platform/manifest.git
+
+执行以后，等n久，结果出现让你喜出望外的结果啊
+
+error:Failed connect to code.google.com:443; Operation now in progress while accessing https://code.google.com/p/git-repo//info/refs
+
+网上大牛解决：修改~/bin/repo文件将第五行
+
+REPO_URL='https://code.google.com/p/git-repo/'
+
+改为
+
+REPO_URL='http://code.google.com/p/git-repo/'
+
+6.然后向PATH中添加bin路径：
+
+export PATH=$PATH:~/bin
+
+7.新建一个目录，然后进入该目录。
+
+mkdir source
+
+cd source
+
+8.执行repo init -u git://Androidgit.linaro.org/platform/manifest.git -b android-2.3.4_r1
+
+这一步大概有一分多钟就完成了。
+
+9.修改.repo文件
+
+找到source目录中的.repo下面的manifest.xml文件,这是个隐藏文件 ls -a才能看到
+
+cd .repo
+
+gedit manifest.xml
+
+将fetch="git://Android.git.kernel.org/"
+
+改为
+
+fetch="git://Android.git.linaro.org/"
+
+10.执行repo sync
+
+OK，开始下载源码啦！鼓掌！！！呵呵....
+小弟也是新手，有什么错误的地方请指正，如有什么问题！留言吧！

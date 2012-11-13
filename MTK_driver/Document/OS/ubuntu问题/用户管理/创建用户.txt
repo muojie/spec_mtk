@@ -1,0 +1,4 @@
+你需要先创建用户组
+sudo groupadd 2006
+然后把你的用户加到这个组里
+sudo adduser 用户名 2006

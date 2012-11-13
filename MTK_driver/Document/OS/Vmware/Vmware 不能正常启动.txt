@@ -1,0 +1,27 @@
+
+VMware Workstation unrecoverable error (disk error while paging) has occurred
+非常感谢强大的网友VMware Workstation unrecoverable error 解决了。
+为了方便，虚拟机都是采用挂起状态，今天在启动虚拟机的时候出现如下提示错误：
+VMware Workstation unrecoverable error: (vmx)
+Exception 0xc0000006 (disk error while paging) has occurred.
+A log file is available in "F:/vmware/RHEL5.4-RHCE-Server/vmware.log".  A core file is available in "F:/vmware/RHEL5.4-RHCE-Server/vmware-vmx-3148.dmp".  Please request support and include the contents of the log file and core file.  
+To collect data to submit to VMware support, choose "Collect Support Data" from the Help menu.
+You can also run the "vm-support" script in the Workstation folder directly.
+We will respond on the basis of your support entitlement.
+
+ 
+
+查看日志：
+Jun 23 17:06:28.967: vmx| Warning: the system was unable to load a page of memory; this can be caused by network problems or a failing hard disk drive.
+Jun 23 17:06:28.967: vmx| 
+Jun 23 17:06:28.967: vmx| Msg_Post: Error
+Jun 23 17:06:28.967: vmx| [msg.log.error.unrecoverable] VMware Workstation unrecoverable error: (vmx)
+Jun 23 17:06:28.967: vmx| Exception 0xc0000006 (disk error while paging) has occurred.
+Jun 23 17:06:28.967: vmx| [msg.panic.haveLog] A log file is available in "F:/vmware/RHEL5.4-RHCE-Server/vmware.log".  [msg.panic.haveCore] A core file is available in "F:/vmware/RHEL5.4-RHCE-Server/vmware-vmx-3148.dmp".  [msg.panic.requestSupport.withLogAndCore] Please request support and include the contents of the log file and core file.  [msg.panic.requestSupport.vmSupport.windows] 
+Jun 23 17:06:28.967: vmx| To collect data to submit to VMware support, choose "Collect Support Data" from the Help menu.
+Jun 23 17:06:28.967: vmx| You can also run the "vm-support" script in the Workstation folder directly.
+Jun 23 17:06:28.967: vmx| [msg.panic.response] We will respond on the basis of your support entitlement.
+Jun 23 17:06:28.967: vmx| ----------------------------------------
+开始以为虚拟内存出现问题，重启机器问题依旧。
+GOOGLE之
+解决方法：删除或修改虚拟机目录下拓展名为.vmss文件，再次启动即可。

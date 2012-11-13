@@ -1,0 +1,120 @@
+
+
+muojie@muojie-desktop:~/src/for_test_git$ repo init -u 192.168.1.110/repositories/Android/manifest.git/
+Getting repo ...
+   from http://code.google.com/p/git-repo/
+
+
+
+remote: Counting objects: 1446, done.
+remote: Finding sources: 100% (1446/1446), done.
+remote: Total 1446 (delta 999)
+Receiving objects: 100% (1446/1446), 427.62 KiB | 133 KiB/s, done.
+Resolving deltas: 100% (999/999), done.
+From http://code.google.com/p/git-repo
+ * [new branch]      maint      -> origin/maint
+ * [new branch]      master     -> origin/master
+ * [new branch]      stable     -> origin/stable
+ * [new tag]         v1.8.2     -> v1.8.2
+remote: Counting objects: 348, done.
+remote: Finding sources: 100% (348/348), done.
+remote: Total 348 (delta 167)
+Receiving objects: 100% (348/348), 178.30 KiB | 111 KiB/s, done.
+Resolving deltas: 100% (167/167), done.
+From http://code.google.com/p/git-repo
+ * [new tag]         v1.0       -> v1.0
+ * [new tag]         v1.0.1     -> v1.0.1
+ * [new tag]         v1.0.2     -> v1.0.2
+ * [new tag]         v1.0.3     -> v1.0.3
+ * [new tag]         v1.0.4     -> v1.0.4
+ * [new tag]         v1.0.5     -> v1.0.5
+ * [new tag]         v1.0.6     -> v1.0.6
+ * [new tag]         v1.0.7     -> v1.0.7
+ * [new tag]         v1.0.8     -> v1.0.8
+ * [new tag]         v1.0.9     -> v1.0.9
+ * [new tag]         v1.1       -> v1.1
+ * [new tag]         v1.2       -> v1.2
+ * [new tag]         v1.3       -> v1.3
+ * [new tag]         v1.3.1     -> v1.3.1
+ * [new tag]         v1.3.2     -> v1.3.2
+ * [new tag]         v1.4       -> v1.4
+ * [new tag]         v1.4.1     -> v1.4.1
+ * [new tag]         v1.4.2     -> v1.4.2
+ * [new tag]         v1.4.3     -> v1.4.3
+ * [new tag]         v1.4.4     -> v1.4.4
+ * [new tag]         v1.5       -> v1.5
+ * [new tag]         v1.5.1     -> v1.5.1
+ * [new tag]         v1.6       -> v1.6
+ * [new tag]         v1.6.1     -> v1.6.1
+ * [new tag]         v1.6.10    -> v1.6.10
+ * [new tag]         v1.6.10.1  -> v1.6.10.1
+ * [new tag]         v1.6.10.2  -> v1.6.10.2
+ * [new tag]         v1.6.2     -> v1.6.2
+ * [new tag]         v1.6.3     -> v1.6.3
+ * [new tag]         v1.6.4     -> v1.6.4
+ * [new tag]         v1.6.5     -> v1.6.5
+ * [new tag]         v1.6.6     -> v1.6.6
+ * [new tag]         v1.6.7     -> v1.6.7
+ * [new tag]         v1.6.7.1   -> v1.6.7.1
+ * [new tag]         v1.6.7.2   -> v1.6.7.2
+ * [new tag]         v1.6.7.3   -> v1.6.7.3
+ * [new tag]         v1.6.7.4   -> v1.6.7.4
+ * [new tag]         v1.6.7.5   -> v1.6.7.5
+ * [new tag]         v1.6.8     -> v1.6.8
+ * [new tag]         v1.6.8.1   -> v1.6.8.1
+ * [new tag]         v1.6.8.10  -> v1.6.8.10
+ * [new tag]         v1.6.8.11  -> v1.6.8.11
+ * [new tag]         v1.6.8.2   -> v1.6.8.2
+ * [new tag]         v1.6.8.3   -> v1.6.8.3
+ * [new tag]         v1.6.8.4   -> v1.6.8.4
+ * [new tag]         v1.6.8.5   -> v1.6.8.5
+ * [new tag]         v1.6.8.6   -> v1.6.8.6
+ * [new tag]         v1.6.8.7   -> v1.6.8.7
+ * [new tag]         v1.6.8.8   -> v1.6.8.8
+ * [new tag]         v1.6.8.9   -> v1.6.8.9
+ * [new tag]         v1.6.9     -> v1.6.9
+ * [new tag]         v1.6.9.1   -> v1.6.9.1
+ * [new tag]         v1.6.9.2   -> v1.6.9.2
+ * [new tag]         v1.6.9.3   -> v1.6.9.3
+ * [new tag]         v1.6.9.4   -> v1.6.9.4
+ * [new tag]         v1.6.9.5   -> v1.6.9.5
+ * [new tag]         v1.6.9.6   -> v1.6.9.6
+ * [new tag]         v1.6.9.7   -> v1.6.9.7
+ * [new tag]         v1.6.9.8   -> v1.6.9.8
+ * [new tag]         v1.7       -> v1.7
+ * [new tag]         v1.7.1     -> v1.7.1
+ * [new tag]         v1.7.2     -> v1.7.2
+ * [new tag]         v1.7.3     -> v1.7.3
+ * [new tag]         v1.7.3.1   -> v1.7.3.1
+ * [new tag]         v1.7.4     -> v1.7.4
+ * [new tag]         v1.7.4.1   -> v1.7.4.1
+ * [new tag]         v1.7.4.2   -> v1.7.4.2
+ * [new tag]         v1.7.4.3   -> v1.7.4.3
+ * [new tag]         v1.7.5     -> v1.7.5
+ * [new tag]         v1.7.6     -> v1.7.6
+ * [new tag]         v1.7.6.1   -> v1.7.6.1
+ * [new tag]         v1.7.7     -> v1.7.7
+ * [new tag]         v1.7.7.1   -> v1.7.7.1
+ * [new tag]         v1.7.7.2   -> v1.7.7.2
+ * [new tag]         v1.7.7.3   -> v1.7.7.3
+ * [new tag]         v1.7.7.4   -> v1.7.7.4
+ * [new tag]         v1.7.7.5   -> v1.7.7.5
+ * [new tag]         v1.7.7.6   -> v1.7.7.6
+ * [new tag]         v1.7.8     -> v1.7.8
+ * [new tag]         v1.7.8.1   -> v1.7.8.1
+ * [new tag]         v1.7.8.2   -> v1.7.8.2
+ * [new tag]         v1.8.0     -> v1.8.0
+ * [new tag]         v1.8.1     -> v1.8.1
+
+... A new repo command ( 1.15) is available.
+... You should upgrade soon:
+
+    cp /home/muojie/src/for_test_git/.repo/repo/repo /home/muojie/bin/repo
+
+Get 192.168.1.110/repositories/Android/manifest.git/
+fatal: '192.168.1.110/repositories/Android/manifest.git' does not appear to be a git repository
+fatal: The remote end hung up unexpectedly
+fatal: '192.168.1.110/repositories/Android/manifest.git' does not appear to be a git repository
+fatal: The remote end hung up unexpectedly
+fatal: cannot obtain manifest 192.168.1.110/repositories/Android/manifest.git/
+
