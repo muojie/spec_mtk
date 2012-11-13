@@ -1,0 +1,268 @@
+; SCR3xX9X.INF 
+;
+; Installation file (.inf) for the SCR3xX USB Smart Card Readers for Windows 98/ME.
+;
+; Copyright © SCM Microsystems Inc.,2001-2005
+;
+
+[Version]
+Signature="$CHICAGO$"
+Class=SmartCardReader
+ClassGuid={50DD5230-BA8A-11D1-BF5D-0000F805F530}
+Provider=%Mfg%
+DriverVer=12/15/2005,4.31.00.01
+
+[Manufacturer]
+%Mfg% = Models
+
+[ClassInstall]
+AddReg=AddClassReg
+
+[Models]
+%PCSC_CCID% = PCSC_CCID,USB\VID_04E6&PID_E001
+%SCR333_CCID% = SCR333_CCID,USB\VID_04E6&PID_5113
+%SCR335_CCID% = SCR335_CCID,USB\VID_04E6&PID_5115
+%SCR33L_CCID% = SCR33L_CCID,USB\VID_04E6&PID_5116
+%USBSIM_CCID% = USBSIM_CCID,USB\VID_04E6&PID_5117
+%EXPSIM_CCID% = EXPSIM_CCID,USB\VID_04E6&PID_5118
+%EXPCRD_CCID% = EXPCRD_CCID,USB\VID_04E6&PID_5119
+%SCR3311_CCID% = SCR3311_CCID,USB\VID_04E6&PID_511D
+%SCR355_CCID% = SCR355_CCID,USB\VID_04E6&PID_5410
+
+[SourceDisksNames]
+1 = %Floppy_Description%,,,""
+1 = " ", SCR3xX9X.sys,,
+1 = " ", RDR_SVR.vxd,,
+1 = " ", RDR_SVR.sys,,
+
+[SourceDisksFiles]
+SCR3xX9X.sys=1
+RDR_SVR.vxd=1
+RDR_SVR.sys=1
+
+[DestinationDirs]
+DefaultDestDir=10,system32\drivers
+PCSC_CCID.CopyFiles=10,system32\drivers ; WINDOWS\SYSTEM32\DRIVERS
+RDR.vxd.CopyFiles=11
+RDR.sys.CopyFiles=10,system32\drivers
+
+[AddClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-25
+
+[PCSC_CCID.CopyFiles]
+SCR3xX9X.sys,,
+
+[RDR.vxd.CopyFiles]
+Rdr_Svr.vxd,,
+
+[RDR.sys.CopyFiles]
+Rdr_Svr.sys,,
+
+[PCSC_CCID.AddRegLoader]
+HKR,,DevLoader,0,*ntkern
+HKR,,NTMPDriver,0,SCR3xX9X.sys
+HKLM, Software\Microsoft\Cryptography\Calais\Readers,,,
+; Configurable F and D values
+;HKR,, FValue , 0x00010001, 1
+;HKR,, DValue , 0x00010001, 1
+HKR,, BufferSize , 0x00010001, 131072
+;HKR,, CardSpecificATR, 1, 3B,34,D6,00,30,42,30,30
+;HKR,, TranslatedATR, 1, 3B,34,B5,00,30,42,30,30
+HKR,, IFDType,0,%PCSC_CCID%
+HKR,, VendorName,0,%Mfg%
+
+[RDR.vxd.AddReg]
+HKLM, "\System\CurrentControlSet\Services\VxD\RDR_SVR" ,,,
+HKLM, "\System\CurrentControlSet\Services\VxD\RDR_SVR" ,"DriverDesc",, %Description%
+HKLM, "\System\CurrentControlSet\Services\VxD\RDR_SVR" ,"StaticVxD",, "RDR_SVR.VXD"
+HKLM, "\System\CurrentControlSet\Services\VxD\RDR_SVR" ,"LoadedState",,"UnLoaded"
+
+[RDR.sys.AddReg]
+HKLM, "\System\CurrentControlSet\Services\Class\SmartCardReader\1966",,,
+HKLM, "\System\CurrentControlSet\Services\Class\SmartCardReader\1966", "DevLoader",, "*ntkern"
+HKLM, "\System\CurrentControlSet\Services\Class\SmartCardReader\1966", "NTMPDriver",, "Rdr_Svr.sys"
+HKLM, "\System\CurrentControlSet\Services\Class\SmartCardReader\1966", "ProviderName",, %Mfg%
+HKLM, "\System\CurrentControlSet\Services\Class\SmartCardReader\1966", "DriverDesc",, %Description%
+HKLM, "\System\CurrentControlSet\Services\Class\SmartCardReader\1966", "MatchingDeviceId",, "*PNP1111"
+HKLM, "\System\CurrentControlSet\Services\Class\SmartCardReader\1966", "DriverDate",, " 6-13-2005"
+
+HKLM, "Enum\Root\SmartCardReader",,,
+HKLM, "Enum\Root\SmartCardReader\0000", "ClassGUID",, "{50DD5230-BA8A-11D1-BF5D-0000F805F530}"
+HKLM, "Enum\Root\SmartCardReader\0000", "Mfg",, %Mfg%
+HKLM, "Enum\Root\SmartCardReader\0000", "HardwareID",, "*PNP1111"
+HKLM, "Enum\Root\SmartCardReader\0000", "Driver",, "SmartCardReader\1966"
+HKLM, "Enum\Root\SmartCardReader\0000", "ConfigFlags", 1, 00,00,00,00
+HKLM, "Enum\Root\SmartCardReader\0000", "Capabilities", 1, 14,00,00,00
+
+[PCSC_CCID]
+CopyFiles= PCSC_CCID.CopyFiles, RDR.vxd.CopyFiles, RDR.sys.CopyFiles
+AddReg= PCSC_CCID.AddRegLoader, RDR.vxd.AddReg,RDR.sys.AddReg
+
+;==================SCR335 Reader========================
+[SCR335_CCID]
+CopyFiles= PCSC_CCID.CopyFiles, RDR.vxd.CopyFiles, RDR.sys.CopyFiles
+AddReg= SCR335_CCID.AddRegLoader, RDR.vxd.AddReg,RDR.sys.AddReg
+
+[SCR335_CCID.AddRegLoader]
+HKR,,DevLoader,0,*ntkern
+HKR,,NTMPDriver,0,SCR3xX9X.sys
+HKLM, Software\Microsoft\Cryptography\Calais\Readers,,,
+; Configurable F and D values
+;HKR,, FValue , 0x00010001, 1
+;HKR,, DValue , 0x00010001, 1
+HKR,, BufferSize , 0x00010001, 131072
+;HKR,, CardSpecificATR, 1, 3B,34,D6,00,30,42,30,30
+;HKR,, TranslatedATR, 1, 3B,34,B5,00,30,42,30,30
+HKR,, IFDType,0,%PCSC_CCID%
+HKR,, VendorName,0,%Mfg%
+;======================================================
+
+;==================SCR333 Reader========================
+[SCR333_CCID]
+CopyFiles= PCSC_CCID.CopyFiles, RDR.vxd.CopyFiles, RDR.sys.CopyFiles
+AddReg= SCR333_CCID.AddRegLoader, RDR.vxd.AddReg,RDR.sys.AddReg
+
+[SCR333_CCID.AddRegLoader]
+HKR,,DevLoader,0,*ntkern
+HKR,,NTMPDriver,0,SCR3xX9X.sys
+HKLM, Software\Microsoft\Cryptography\Calais\Readers,,,
+; Configurable F and D values
+;HKR,, FValue , 0x00010001, 1
+;HKR,, DValue , 0x00010001, 1
+HKR,, BufferSize , 0x00010001, 131072
+;HKR,, CardSpecificATR, 1, 3B,34,D6,00,30,42,30,30
+;HKR,, TranslatedATR, 1, 3B,34,B5,00,30,42,30,30
+HKR,, IFDType,0,%PCSC_CCID%
+HKR,, VendorName,0,%Mfg%
+;======================================================
+
+;==================SCR33L Reader========================
+[SCR33L_CCID]
+CopyFiles= PCSC_CCID.CopyFiles, RDR.vxd.CopyFiles, RDR.sys.CopyFiles
+AddReg= SCR33L_CCID.AddRegLoader, RDR.vxd.AddReg,RDR.sys.AddReg
+
+[SCR33L_CCID.AddRegLoader]
+HKR,,DevLoader,0,*ntkern
+HKR,,NTMPDriver,0,SCR3xX9X.sys
+HKLM, Software\Microsoft\Cryptography\Calais\Readers,,,
+; Configurable F and D values
+;HKR,, FValue , 0x00010001, 1
+;HKR,, DValue , 0x00010001, 1
+HKR,, BufferSize , 0x00010001, 131072
+;HKR,, CardSpecificATR, 1, 3B,34,D6,00,30,42,30,30
+;HKR,, TranslatedATR, 1, 3B,34,B5,00,30,42,30,30
+HKR,, IFDType,0,%PCSC_CCID%
+HKR,, VendorName,0,%Mfg%
+;======================================================
+
+;==================USBSIM Reader========================
+[USBSIM_CCID]
+CopyFiles= PCSC_CCID.CopyFiles, RDR.vxd.CopyFiles, RDR.sys.CopyFiles
+AddReg= USBSIM_CCID.AddRegLoader, RDR.vxd.AddReg,RDR.sys.AddReg
+
+[USBSIM_CCID.AddRegLoader]
+HKR,,DevLoader,0,*ntkern
+HKR,,NTMPDriver,0,SCR3xX9X.sys
+HKLM, Software\Microsoft\Cryptography\Calais\Readers,,,
+; Configurable F and D values
+;HKR,, FValue , 0x00010001, 1
+;HKR,, DValue , 0x00010001, 1
+HKR,, BufferSize , 0x00010001, 131072
+;HKR,, CardSpecificATR, 1, 3B,34,D6,00,30,42,30,30
+;HKR,, TranslatedATR, 1, 3B,34,B5,00,30,42,30,30
+HKR,, IFDType,0,%PCSC_CCID%
+HKR,, VendorName,0,%Mfg%
+;======================================================
+
+;==================EXPSIM Reader========================
+[EXPSIM_CCID]
+CopyFiles= PCSC_CCID.CopyFiles, RDR.vxd.CopyFiles, RDR.sys.CopyFiles
+AddReg= EXPSIM_CCID.AddRegLoader, RDR.vxd.AddReg,RDR.sys.AddReg
+
+[EXPSIM_CCID.AddRegLoader]
+HKR,,DevLoader,0,*ntkern
+HKR,,NTMPDriver,0,SCR3xX9X.sys
+HKLM, Software\Microsoft\Cryptography\Calais\Readers,,,
+; Configurable F and D values
+;HKR,, FValue , 0x00010001, 1
+;HKR,, DValue , 0x00010001, 1
+HKR,, BufferSize , 0x00010001, 131072
+;HKR,, CardSpecificATR, 1, 3B,34,D6,00,30,42,30,30
+;HKR,, TranslatedATR, 1, 3B,34,B5,00,30,42,30,30
+HKR,, IFDType,0,%PCSC_CCID%
+HKR,, VendorName,0,%Mfg%
+;======================================================
+
+;==================EXPCRD Reader========================
+[EXPCRD_CCID]
+CopyFiles= PCSC_CCID.CopyFiles, RDR.vxd.CopyFiles, RDR.sys.CopyFiles
+AddReg= EXPCRD_CCID.AddRegLoader, RDR.vxd.AddReg,RDR.sys.AddReg
+
+[EXPCRD_CCID.AddRegLoader]
+HKR,,DevLoader,0,*ntkern
+HKR,,NTMPDriver,0,SCR3xX9X.sys
+HKLM, Software\Microsoft\Cryptography\Calais\Readers,,,
+; Configurable F and D values
+;HKR,, FValue , 0x00010001, 1
+;HKR,, DValue , 0x00010001, 1
+HKR,, BufferSize , 0x00010001, 131072
+;HKR,, CardSpecificATR, 1, 3B,34,D6,00,30,42,30,30
+;HKR,, TranslatedATR, 1, 3B,34,B5,00,30,42,30,30
+HKR,, IFDType,0,%PCSC_CCID%
+HKR,, VendorName,0,%Mfg%
+;======================================================
+
+;==================SCR3311 Reader========================
+[SCR3311_CCID]
+CopyFiles= PCSC_CCID.CopyFiles, RDR.vxd.CopyFiles, RDR.sys.CopyFiles
+AddReg= SCR3311_CCID.AddRegLoader, RDR.vxd.AddReg,RDR.sys.AddReg
+
+[SCR3311_CCID.AddRegLoader]
+HKR,,DevLoader,0,*ntkern
+HKR,,NTMPDriver,0,SCR3xX9X.sys
+HKLM, Software\Microsoft\Cryptography\Calais\Readers,,,
+; Configurable F and D values
+;HKR,, FValue , 0x00010001, 1
+;HKR,, DValue , 0x00010001, 1
+HKR,, BufferSize , 0x00010001, 131072
+;HKR,, CardSpecificATR, 1, 3B,34,D6,00,30,42,30,30
+;HKR,, TranslatedATR, 1, 3B,34,B5,00,30,42,30,30
+HKR,, IFDType,0,%PCSC_CCID%
+HKR,, VendorName,0,%Mfg%
+;======================================================
+
+;==================SCR355 Reader========================
+[SCR355_CCID]
+CopyFiles= PCSC_CCID.CopyFiles, RDR.vxd.CopyFiles, RDR.sys.CopyFiles
+AddReg= SCR355_CCID.AddRegLoader, RDR.vxd.AddReg,RDR.sys.AddReg
+
+[SCR355_CCID.AddRegLoader]
+HKR,,DevLoader,0,*ntkern
+HKR,,NTMPDriver,0,SCR3xX9X.sys
+HKLM, Software\Microsoft\Cryptography\Calais\Readers,,,
+; Configurable F and D values
+;HKR,, FValue , 0x00010001, 1
+;HKR,, DValue , 0x00010001, 1
+HKR,, BufferSize , 0x00010001, 131072
+;HKR,, CardSpecificATR, 1, 3B,34,D6,00,30,42,30,30
+;HKR,, TranslatedATR, 1, 3B,34,B5,00,30,42,30,30
+HKR,, IFDType,0,%SCR355_CCID%
+HKR,, VendorName,0,%Mfg%
+;======================================================
+
+[Strings]
+Mfg = "SCM Microsystems Inc."
+ShortProviderName = "SCM"
+Description = "Server for SmartCard Reader"
+Floppy_Description = ""
+PCSC_CCID="SCR33x USB Smart Card Reader"
+SCR333_CCID="SCR333 Internal Smart Card Reader"
+SCR335_CCID="SCR335 USB Smart Card Reader"
+SCR33L_CCID="SCR3310 USB Smart Card Reader"
+USBSIM_CCID="SCR3320 - Smart Card Reader"
+EXPSIM_CCID="Expresscard USB SIM Card Reader"
+EXPCRD_CCID="SCR3340 - ExpressCard54 Smart Card Reader"
+SCR3311_CCID="SCR3311 USB Smart Card Reader"
+SCR355_CCID="SCR35xx USB Smart Card Reader"
+ClassName="Smart Card Readers"

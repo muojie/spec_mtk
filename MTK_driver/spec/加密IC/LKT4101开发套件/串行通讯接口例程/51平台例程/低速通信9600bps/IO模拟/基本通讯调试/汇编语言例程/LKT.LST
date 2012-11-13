@@ -1,0 +1,163 @@
+A51 MACRO ASSEMBLER  LKT                                                                  04/06/2011 13:20:34 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.02
+OBJECT MODULE PLACED IN LKT.OBJ
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE LKT.asm SET(SMALL) DEBUG EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1      
+                       2      
+  00A2                 3             RSET    EQU             P2.2
+  00A0                 4             IO              EQU             P2.0
+  0000                 5             flag    EQU             20H.0               
+  0030                 6             buf     EQU             30H                         
+0000                   7             ORG     0000H
+                       8     
+                       9             
+0000 12001B           10             LCALL   SamPowerOn                               
+0003 12000B           11             LCALL   putdata1                                 
+0006 120087           12             LCALL   ICCcommand                               
+0009 01A1             13             JMP             ED
+                      14     
+000B                  15     putdata1:                                                        
+000B 7830             16              MOV    R0,#buf
+000D E4               17              CLR    A
+000E F530             18              MOV    buf,A
+0010 753184           19              MOV    buf+1,#84H
+0013 F532             20              MOV    buf+2,A
+0015 F533             21              MOV    buf+3,A
+0017 753408           22              MOV    buf+4,#8
+001A 22               23              RET      
+                      24               
+001B                  25     SamPowerOn:                                                  
+001B 120097           26             LCALL   DelayEtu
+001E D2A0             27             SETB    IO                                           
+0020 C2A2             28             CLR             RSET                             
+0022 12009C           29             LCALL   Delay
+0025 D2A2             30             SETB    RSET
+0027 C200             31             CLR     flag                                    
+0029 7830             32             MOV             R0,#buf
+                      33     
+002B                  34     Readchar:                                                        
+002B 12003B           35             LCALL   ReceChar
+002E F6               36             MOV             @R0,A
+002F 08               37             INC             R0      
+0030 200004           38             JB              flag,Icc
+0033 B841F5           39             CJNE    R0,#buf+17,Readchar          
+0036 22               40             RET
+0037                  41     Icc:                    
+0037 B83BF1           42             CJNE    R0,#buf+11,Readchar              
+003A 22               43             RET              
+                      44     
+003B                  45     ReceChar:                                                        
+003B 20A0FD           46             JB              IO,$                            
+003E 7F09             47             MOV             R7,#9                             
+0040 E4               48             CLR     A
+0041 C3               49             CLR             C
+0042                  50     ReceChar1:                      
+0042 00               51             NOP
+0043 120097           52             LCALL   DelayEtu
+0046 A2A0             53             MOV             C,IO 
+0048 13               54             RRC             A
+0049 DFF7             55             DJNZ    R7,ReceChar1
+004B 120097           56             LCALL   DelayEtu
+004E 12009C           57             LCALL   Delay           
+0051 00               58             NOP
+A51 MACRO ASSEMBLER  LKT                                                                  04/06/2011 13:20:34 PAGE     2
+
+0052 00               59             NOP
+0053 A2A0             60             MOV             C,IO                                 
+0055 4004             61             JC              Rececharodd     
+0057 30D004           62             JNB             PSW.0,Rececharok
+                      63     
+005A                  64     Rececharerr:                                             
+005A 22               65             RET             
+005B                  66     Rececharodd: 
+005B 30D0FC           67             JNB             PSW.0,Rececharerr        
+                      68             
+005E                  69     Rececharok:                                                       
+005E 120097           70             LCALL   DelayEtu
+0061 120097           71             LCALL   DelayEtu
+0064 22               72             RET              
+                      73      
+0065                  74     SendChar:                                                         
+0065 7F09             75             MOV             R7,#9
+0067 A2D0             76             MOV             C,PSW.0                                   
+0069 C2A0             77             CLR             IO                                                
+006B                  78     SendChar1:
+006B 13               79             RRC             A
+006C 120097           80             LCALL   DelayEtu
+006F 12009C           81             LCALL   Delay
+0072 92A0             82             MOV             IO,C                                     
+0074 DFF5             83             DJNZ    R7,SendChar1
+                      84     
+0076 00               85             NOP
+0077 00               86             NOP
+0078 120097           87             LCALL   DelayEtu
+007B D2A0             88             SETB    IO                                                
+007D 120097           89             LCALL   DelayEtu
+0080 120097           90             LCALL   DelayEtu
+0083 12009C           91             LCALL   Delay
+0086 22               92             RET
+                      93     
+0087                  94     ICCcommand:                                                       
+                      95             
+0087 E6               96             MOV             A,@R0 
+0088 120065           97             LCALL   SendChar
+008B 08               98             INC             R0
+008C B835F8           99             CJNE    R0,#buf+5,icccommand    
+008F 7830            100             MOV             R0,#buf
+0091 D200            101             SETB    flag                                      
+0093 12002B          102             LCALL   Readchar                
+0096 22              103             RET   
+                     104                                                                                                
+                                                                                         
+0097                 105     DelayEtu:                                                         
+0097 792A            106             MOV             R1,#42                                    
+0099 D9FE            107             DJNZ    R1,$
+009B 22              108             RET
+                     109     
+009C                 110     Delay:                                                            
+009C 7904            111             MOV             R1,#4
+009E D9FE            112             DJNZ    R1,$
+00A0 22              113             RET       
+                     114     
+00A1                 115     ED:        
+                     116             END     
+A51 MACRO ASSEMBLER  LKT                                                                  04/06/2011 13:20:34 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+BUF. . . . . . . .  N NUMB   0030H   A   
+DELAY. . . . . . .  C ADDR   009CH   A   
+DELAYETU . . . . .  C ADDR   0097H   A   
+ED . . . . . . . .  C ADDR   00A1H   A   
+FLAG . . . . . . .  B ADDR   0020H.0 A   
+ICC. . . . . . . .  C ADDR   0037H   A   
+ICCCOMMAND . . . .  C ADDR   0087H   A   
+IO . . . . . . . .  B ADDR   00A0H.0 A   
+P2 . . . . . . . .  D ADDR   00A0H   A   
+PSW. . . . . . . .  D ADDR   00D0H   A   
+PUTDATA1 . . . . .  C ADDR   000BH   A   
+READCHAR . . . . .  C ADDR   002BH   A   
+RECECHAR . . . . .  C ADDR   003BH   A   
+RECECHAR1. . . . .  C ADDR   0042H   A   
+RECECHARERR. . . .  C ADDR   005AH   A   
+RECECHARODD. . . .  C ADDR   005BH   A   
+RECECHAROK . . . .  C ADDR   005EH   A   
+RSET . . . . . . .  B ADDR   00A0H.2 A   
+SAMPOWERON . . . .  C ADDR   001BH   A   
+SENDCHAR . . . . .  C ADDR   0065H   A   
+SENDCHAR1. . . . .  C ADDR   006BH   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

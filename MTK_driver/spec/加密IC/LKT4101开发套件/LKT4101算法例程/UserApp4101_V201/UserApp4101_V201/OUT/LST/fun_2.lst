@@ -1,0 +1,45 @@
+C51 COMPILER V7.50   FUN_2                                                                 03/12/2012 14:27:39 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE FUN_2
+OBJECT MODULE PLACED IN .\OUT\OBJ\fun_2.obj
+COMPILER INVOKED BY: e:\Keil\C51\BIN\C51.EXE fun_2.c BROWSE DEBUG OBJECTEXTEND PRINT(.\OUT\LST\fun_2.lst) OBJECT(.\OUT\O
+                    -BJ\fun_2.obj)
+
+line level    source
+
+   1          #include "cos_fun.h"
+   2          
+   3          //========================================
+   4          //test_fun2 功能是计算8字节的异或
+   5          //
+   6          //TxComm[1..8] = RxComm[2..9] XOR RxComm[10..17] 
+   7          //========================================
+   8           void test_fun2(unsigned char xdata *RxComm,unsigned char xdata *TxComm)
+   9           {
+  10   1        unsigned char i;
+  11   1        
+  12   1        for(i=0;i<8;i++)
+  13   1        {
+  14   2         TxComm[i+1] = RxComm[i+2] ^  RxComm[i+10];
+  15   2        }
+  16   1      
+  17   1         TxComm[0] = 8; //输出长度为8
+  18   1      
+  19   1       }
+  20          
+  21          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     85    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,269 @@
+BL51 BANKED LINKER/LOCATER V5.12                                                        03/12/2012  14:27:39  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V5.12, INVOKED BY:
+E:\KEIL\C51\BIN\BL51.EXE .\OUT\OBJ\MainFile.obj, .\OUT\OBJ\UserAppSTARTUP.obj, .\OUT\OBJ\MyAsmFun.obj, .\OUT\OBJ\fun_2.o
+>> bj, .\OUT\OBJ\fun_1.obj TO .\OUT\OBJ\UserApp PRINT (.\OUT\LST\UserApp.m51) RAMSIZE (256) CODE (0X4000-0XFFFF, ?PR?_US
+>> ERAPPALG?MAINFILE (0X4000)) XDATA (0X0480-0X06FF) DATA (0X28) IDATA (0XFF)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\OUT\OBJ\MainFile.obj (MAINFILE)
+  .\OUT\OBJ\UserAppSTARTUP.obj (?C_STARTUP)
+  .\OUT\OBJ\MyAsmFun.obj (MYASMFUN)
+  .\OUT\OBJ\fun_2.obj (FUN_2)
+  .\OUT\OBJ\fun_1.obj (FUN_1)
+
+
+LINK MAP OF MODULE:  .\OUT\OBJ\UserApp (MAINFILE)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+                    0008H     0020H                  *** GAP ***
+            DATA    0028H     0009H     UNIT         _DATA_GROUP_
+            IDATA   0031H     0001H     UNIT         ?STACK
+
+            * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
+                    0000H     0480H                  *** GAP ***
+            XDATA   0480H     010CH     UNIT         _XDATA_GROUP_
+            XDATA   058CH     0004H     UNIT         ?XD?MAINFILE
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     3FFDH                  *** GAP ***
+            CODE    4000H     0050H     UNIT         ?PR?_USERAPPALG?MAINFILE
+            CODE    4050H     00B0H     UNIT         ?PR?_TEST_FUN1?FUN_1
+            CODE    4100H     0055H     UNIT         ?PR?_TEST_FUN2?FUN_2
+            CODE    4155H     001AH     UNIT         ?PR?_TEST_FUN3?FUN_1
+            CODE    416FH     0018H     UNIT         ?PR?_TEST_FUN4?FUN_1
+            CODE    4187H     0014H     UNIT         ?PR?GLOBALVAR_INIT?MAINFILE
+            CODE    419BH     000DH     UNIT         ?PR?MAIN?MAINFILE
+            CODE    41A8H     0006H     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\OUT\OBJ\UserApp (MAINFILE)
+
+
+SEGMENT                               DATA_GROUP          XDATA_GROUP
+  +--> CALLED SEGMENT               START    LENGTH     START    LENGTH
+-----------------------------------------------------------------------
+?C_C51STARTUP                       -----    -----      -----    -----
+  +--> ?PR?MAIN?MAINFILE
+
+?PR?MAIN?MAINFILE                   -----    -----      0480H    0002H
+BL51 BANKED LINKER/LOCATER V5.12                                                      03/12/2012  14:27:39  PAGE 2
+
+
+  +--> ?PR?_USERAPPALG?MAINFILE
+
+?PR?_USERAPPALG?MAINFILE            0028H    0005H      -----    -----
+  +--> ?PR?GLOBALVAR_INIT?MAINFILE
+  +--> ?PR?_TEST_FUN1?FUN_1
+  +--> ?PR?_TEST_FUN2?FUN_2
+  +--> ?PR?_TEST_FUN3?FUN_1
+  +--> ?PR?_TEST_FUN4?FUN_1
+
+?PR?_TEST_FUN1?FUN_1                002DH    0002H      0482H    010AH
+
+?PR?_TEST_FUN2?FUN_2                002DH    0004H      -----    -----
+
+?PR?_TEST_FUN3?FUN_1                002DH    0002H      -----    -----
+
+?PR?_TEST_FUN4?FUN_1                002DH    0002H      -----    -----
+
+
+
+SYMBOL TABLE OF MODULE:  .\OUT\OBJ\UserApp (MAINFILE)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAINFILE
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  X:058CH         PUBLIC        g_test_Wvar
+  C:419BH         PUBLIC        main
+  C:4000H         PUBLIC        _UserAppAlg
+  X:058EH         PUBLIC        g_test_var1
+  X:058FH         PUBLIC        g_test_var2
+  C:4187H         PUBLIC        GlobalVar_Init
+  -------         PROC          GLOBALVAR_INIT
+  C:4187H         LINE#         23
+  C:4187H         LINE#         24
+  C:4187H         LINE#         25
+  C:418DH         LINE#         26
+  C:4190H         LINE#         27
+  C:419AH         LINE#         28
+  -------         ENDPROC       GLOBALVAR_INIT
+  -------         PROC          _USERAPPALG
+  D:0028H         SYMBOL        RxComm
+  D:002AH         SYMBOL        TxComm
+  -------         DO            
+  D:002CH         SYMBOL        cmd
+  -------         ENDDO         
+  C:4000H         LINE#         45
+  C:4008H         LINE#         46
+  C:4008H         LINE#         49
+  C:4010H         LINE#         51
+  C:4012H         LINE#         52
+  C:4012H         LINE#         53
+  C:4015H         LINE#         54
+  C:4015H         LINE#         56
+  C:401AH         LINE#         57
+  C:401AH         LINE#         58
+  C:4025H         LINE#         59
+BL51 BANKED LINKER/LOCATER V5.12                                                      03/12/2012  14:27:39  PAGE 3
+
+
+  C:4025H         LINE#         61
+  C:402AH         LINE#         62
+  C:402AH         LINE#         63
+  C:4035H         LINE#         64
+  C:4035H         LINE#         66
+  C:403AH         LINE#         67
+  C:403AH         LINE#         68
+  C:4041H         LINE#         69
+  C:4041H         LINE#         71
+  C:4046H         LINE#         72
+  C:4046H         LINE#         73
+  C:404DH         LINE#         74
+  C:404DH         LINE#         76
+  C:404FH         LINE#         78
+  -------         ENDPROC       _USERAPPALG
+  -------         PROC          MAIN
+  -------         DO            
+  X:0480H         SYMBOL        inbuf
+  X:0481H         SYMBOL        outbuf
+  -------         ENDDO         
+  C:419BH         LINE#         81
+  C:419BH         LINE#         82
+  C:419BH         LINE#         84
+  C:41A6H         LINE#         85
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAINFILE
+
+  -------         MODULE        ?C_STARTUP
+  C:41A8H         SEGMENT       ?C_C51STARTUP
+  I:0031H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  N:0000H         SYMBOL        PBPSTACK
+  N:0000H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:41A8H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         75
+  C:41A8H         LINE#         81
+  C:41ABH         LINE#         82
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        MYASMFUN
+BL51 BANKED LINKER/LOCATER V5.12                                                      03/12/2012  14:27:39  PAGE 4
+
+
+  C:1050H         PUBLIC        _DESDECRYPT
+  C:1040H         PUBLIC        _DESENCRYPT
+  C:1060H         PUBLIC        _GETCHIPID
+  C:1020H         PUBLIC        _GETRANDOMDATA
+  C:1000H         PUBLIC        _READNVM
+  C:1010H         PUBLIC        _WRITENVM
+  -------         ENDMOD        MYASMFUN
+
+  -------         MODULE        FUN_2
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:4100H         PUBLIC        _test_fun2
+  -------         PROC          _TEST_FUN2
+  D:002DH         SYMBOL        RxComm
+  D:002FH         SYMBOL        TxComm
+  -------         DO            
+  D:0001H         SYMBOL        i
+  -------         ENDDO         
+  C:4100H         LINE#         8
+  C:4108H         LINE#         9
+  C:4108H         LINE#         12
+  C:410AH         LINE#         13
+  C:410AH         LINE#         14
+  C:4147H         LINE#         15
+  C:414BH         LINE#         17
+  C:4154H         LINE#         19
+  -------         ENDPROC       _TEST_FUN2
+  -------         ENDMOD        FUN_2
+
+  -------         MODULE        FUN_1
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:4050H         PUBLIC        _test_fun1
+  C:4155H         PUBLIC        _test_fun3
+  C:416FH         PUBLIC        _test_fun4
+  -------         PROC          _TEST_FUN1
+  D:0006H         SYMBOL        RxComm
+  D:002DH         SYMBOL        TxComm
+  -------         DO            
+  D:0001H         SYMBOL        i
+  X:0482H         SYMBOL        in
+  X:0503H         SYMBOL        out
+  X:0583H         SYMBOL        key
+  -------         ENDDO         
+  C:4050H         LINE#         11
+  C:4054H         LINE#         12
+  C:4054H         LINE#         19
+  C:405AH         LINE#         20
+  C:405CH         LINE#         21
+  C:405CH         LINE#         22
+  C:4079H         LINE#         23
+  C:407DH         LINE#         25
+  C:408BH         LINE#         27
+  C:4097H         LINE#         28
+  C:4097H         LINE#         29
+  C:40B4H         LINE#         30
+  C:40B7H         LINE#         32
+  C:40C6H         LINE#         34
+  C:40D2H         LINE#         35
+BL51 BANKED LINKER/LOCATER V5.12                                                      03/12/2012  14:27:39  PAGE 5
+
+
+  C:40D2H         LINE#         36
+  C:40F1H         LINE#         37
+  C:40F4H         LINE#         39
+  C:40FFH         LINE#         40
+  -------         ENDPROC       _TEST_FUN1
+  -------         PROC          _TEST_FUN3
+  D:002DH         SYMBOL        TxComm
+  C:4155H         LINE#         47
+  C:4159H         LINE#         48
+  C:4159H         LINE#         49
+  C:4165H         LINE#         51
+  C:416EH         LINE#         53
+  -------         ENDPROC       _TEST_FUN3
+  -------         PROC          _TEST_FUN4
+  D:002DH         SYMBOL        TxComm
+  C:416FH         LINE#         58
+  C:4173H         LINE#         59
+  C:4173H         LINE#         60
+  C:417DH         LINE#         62
+  C:4186H         LINE#         64
+  -------         ENDPROC       _TEST_FUN4
+  -------         ENDMOD        FUN_1
+
+Program Size: data=18.0 xdata=272 code=433
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,25 @@
+C51 COMPILER V7.50   GLOBAL_VAR                                                            08/24/2010 15:46:18 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE GLOBAL_VAR
+OBJECT MODULE PLACED IN .\OUT\OBJ\global_var.obj
+COMPILER INVOKED BY: e:\Keil\C51\BIN\C51.EXE global_var.c LARGE BROWSE DEBUG OBJECTEXTEND PRINT(.\OUT\LST\global_var.lst
+                    -) OBJECT(.\OUT\OBJ\global_var.obj)
+
+line level    source
+
+   1          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

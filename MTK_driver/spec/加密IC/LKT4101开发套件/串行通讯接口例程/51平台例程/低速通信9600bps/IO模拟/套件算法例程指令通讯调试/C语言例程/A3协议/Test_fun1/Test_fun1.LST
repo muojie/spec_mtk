@@ -1,0 +1,129 @@
+C51 COMPILER V9.01   TEST_FUN1                                                             04/06/2011 11:38:40 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE TEST_FUN1
+OBJECT MODULE PLACED IN Test_fun1.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Test_fun1.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          
+   3          #define uchar  unsigned  char
+   4          #define uint   unsigned  int
+   5          sbit    REST = P2^2;
+   6          sbit    IO   = P2^0;
+   7          
+   8          uchar   buf[25];                                                                                //数据缓存区
+   9          uchar   SendBuf_1[20]={0xA3,0x12,0x01,0x01,0x02,0x03,0x04,0x05,
+  10                                                          0x06,0x07,0x08,0x08,0x11,0x22,0x33,0x44,
+  11                                                          0x55,0x66,0x77,0x88};
+  12          
+  13          
+  14          /*****************用于微调发送接收的时间**************/
+  15          void Delay()                                            
+  16          {
+  17   1              uchar   i;
+  18   1              for(i=0;i<3;i++);
+  19   1      }       
+  20                  
+  21          /*********************发送接收一位的时间 etu=372/3.579 = 104us*************
+  22          ***************因发送接收其它指令也要占用时间这里的     DelayEtu = 90us********/
+  23          void Delay_100us()                                      
+  24          {                                                                       
+  25   1              uchar   i;
+  26   1              for(i=0;i<28;i++);
+  27   1      }
+  28          
+  29          /*****************上电发送复位请求******************/
+  30          void Rest()                                                     
+  31          {
+  32   1              Delay() ;
+  33   1              IO   = 1;                                       //必须为高等待接收LKT加密芯片发送的起始位
+  34   1              REST = 0;
+  35   1              Delay_100us();
+  36   1              REST = 1; 
+  37   1      } 
+  38          
+  39          /****************读取LTK4101的返回信息并将其存入数据缓存区****************/
+  40          void ReceArt(char m)                       
+  41          {
+  42   1              uchar i,n;
+  43   1              
+  44   1              for(n=0;n<m;n++)
+  45   1              {       
+  46   2                      while(IO);
+  47   2                      for(i=0;i<8;i++)                   //读一个字节函数 
+  48   2                      {
+  49   3                              Delay_100us();
+  50   3                              buf[n] >>= 1;
+  51   3                              if(1 == IO)
+  52   3                                      buf[n] |= 0x80;
+  53   3                      }
+  54   2                      Delay_100us();
+  55   2                      ACC = buf[n];                                                      
+C51 COMPILER V9.01   TEST_FUN1                                                             04/06/2011 11:38:40 PAGE 2   
+
+  56   2                      if(IO == P)                                 //判断偶校验位
+  57   2                      {
+  58   3                         Delay_100us();
+  59   3                         Delay_100us();
+  60   3                      }       
+  61   2              }
+  62   1      
+  63   1      }
+  64          
+  65          /****************发送随机数命令信息***************/
+  66          
+  67          void SendChar(uchar m,uchar Send[])
+  68          {
+  69   1          uchar i,n,flag,SendChar;
+  70   1              
+  71   1              for(n = 0 ;n<m ; n++)
+  72   1              {       
+  73   2                      ACC  = Send[n] ;
+  74   2                      flag = P;
+  75   2                      SendChar =      Send[n];                        //将发送的字节放在SendChar
+  76   2                      IO  = 0;
+  77   2                      for(i=0;i<8;i++)                           //发送一个字节
+  78   2                      {
+  79   3                              Delay_100us();
+  80   3                              if(SendChar & 0x01)
+  81   3                                      IO = 1;
+  82   3                              else
+  83   3                                      IO = 0;
+  84   3                              SendChar >>=1;
+  85   3                      }
+  86   2                      Delay_100us();
+  87   2                      IO = flag;                                         //发送保存的奇偶位
+  88   2                      Delay_100us();  
+  89   2                      IO = 1;                                            //发送停止位
+  90   2                      Delay_100us();  
+  91   2                      Delay_100us();                  
+  92   2              }
+  93   1      }        
+  94          
+  95          void main()
+  96          {
+  97   1              Rest();
+  98   1              ReceArt(17);                                             //必须接收完或延时足够长（大于LKT加密芯片向MCU传送返回信息的时间）才能向LKT加密芯片发
+             -送数据
+  99   1              Delay_100us();  
+ 100   1              SendChar(20,SendBuf_1)  ;                       //将SendBuf的长度和首地址传给SendChar(uchar m,uchar Send[])
+ 101   1              ReceArt(10);    
+ 102   1              while(1);
+ 103   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    235    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     45       7
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

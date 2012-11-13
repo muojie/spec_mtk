@@ -1,0 +1,113 @@
+C51 COMPILER V7.50   MAINFILE                                                              03/12/2012 14:27:38 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE MAINFILE
+OBJECT MODULE PLACED IN .\OUT\OBJ\MainFile.obj
+COMPILER INVOKED BY: e:\Keil\C51\BIN\C51.EXE MainFile.c BROWSE DEBUG OBJECTEXTEND PRINT(.\OUT\LST\MainFile.lst) OBJECT(.
+                    -\OUT\OBJ\MainFile.obj)
+
+line level    source
+
+   1          typedef unsigned char BYTE;
+   2          typedef unsigned int  WORD;
+   3          typedef unsigned long DWORD;
+   4          
+   5          
+   6          extern void test_fun1(BYTE xdata *inbuf,BYTE xdata *outbuf); // DES Encrypt
+   7          extern void test_fun2(BYTE xdata *inbuf,BYTE xdata *outbuf); // XOR
+   8          extern void test_fun3(BYTE xdata *outbuf); // get random
+   9          extern void test_fun4(BYTE xdata *TxComm); 
+  10          
+  11          //####################################################################
+  12          //编译连接后  data 区的大小不能大于 54  (0x0036)
+  13          //编译连接后 xdata 区的大小不能大于 640 (0x0280) 
+  14          //编译连接后  code 区的大小不能大于 48K (0xC000)
+  15          //####################################################################
+  16          
+  17          
+  18          //全局变量的定义示例：
+  19          BYTE xdata g_test_var1,g_test_var2;
+  20          WORD xdata g_test_Wvar;
+  21          
+  22          //如果需要为全局变量初始化，则必须在调用算法的过程中来完成初始化
+  23          void GlobalVar_Init() 
+  24          {//将此函数放在算法调用的时候完成。
+  25   1       g_test_var1 = 0x12;
+  26   1       g_test_var1 = 0x34;
+  27   1       g_test_Wvar = 0x7788;
+  28   1      }
+  29          
+  30          
+  31          // 注意：不要使用类似下列注释中的方法来完成全局变量的初始化
+  32          /*
+  33          BYTE xdata g_test_var1 = 0x12;
+  34          WORD xdata g_test_Wvar = 0x7788;
+  35          */
+  36          
+  37          
+  38          
+  39          
+  40          
+  41          //==========================================================
+  42          //Fun_UserAppAlg 用户算法入口
+  43          //用户的算法在此实现
+  44          //==========================================================
+  45          BYTE UserAppAlg(BYTE xdata *RxComm,BYTE xdata *TxComm)
+  46          {
+  47   1       BYTE cmd;
+  48   1      
+  49   1       cmd = RxComm[1]; 
+  50   1      
+  51   1       if (cmd == 0x00) 
+  52   1       {
+  53   2        GlobalVar_Init(); //全局变量的初始化 
+  54   2       }
+C51 COMPILER V7.50   MAINFILE                                                              03/12/2012 14:27:38 PAGE 2   
+
+  55   1      
+  56   1       if (cmd == 0x01) 
+  57   1       {
+  58   2        test_fun1(RxComm  , TxComm);
+  59   2       }
+  60   1       
+  61   1       if (cmd == 0x02) 
+  62   1        {  
+  63   2         test_fun2(RxComm,TxComm);
+  64   2        }
+  65   1      
+  66   1       if (cmd == 0x03) 
+  67   1       {
+  68   2        test_fun3(TxComm);
+  69   2       }
+  70   1      
+  71   1       if (cmd == 0x04) 
+  72   1       {
+  73   2        test_fun4(TxComm);
+  74   2       }
+  75   1      
+  76   1       return 1;
+  77   1      
+  78   1      }
+  79          
+  80          //=====================以下main 函数不要修改===========================
+  81          void main()
+  82          {
+  83   1       BYTE xdata inbuf[1],outbuf[1];
+  84   1       UserAppAlg(inbuf,outbuf);
+  85   1       for(;;);
+  86   1      }
+  87          //=====================================================================
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    113    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =      4       2
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

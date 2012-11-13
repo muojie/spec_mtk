@@ -1,0 +1,81 @@
+C51 COMPILER V7.00  MAINFILE                                                               03/23/2011 10:12:47 PAGE 1   
+
+
+C51 COMPILER V7.00, COMPILATION OF MODULE MAINFILE
+OBJECT MODULE PLACED IN .\OUT\OBJ\MainFile.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE MainFile.c BROWSE DEBUG OBJECTEXTEND PRINT(.\OUT\LST\MainFile.lst) OBJECT(.
+                    -\OUT\OBJ\MainFile.obj)
+
+stmt level    source
+
+   1          typedef unsigned char BYTE;
+   2          typedef unsigned int  WORD;
+   3          typedef unsigned long DWORD;
+   4          
+   5          
+   6          extern void test_fun1(BYTE xdata *inbuf,BYTE xdata *outbuf); // DES Encrypt
+   7          extern void test_fun2(BYTE xdata *inbuf,BYTE xdata *outbuf); //写密钥
+   8          extern void test_fun3(BYTE xdata *inbuf,BYTE xdata *outbuf); //读密钥
+   9          
+  10          
+  11          //####################################################################
+  12          //编译连接后  data 区的大小不能大于 54  (0x0036)
+  13          //编译连接后 xdata 区的大小不能大于 640 (0x0280) 
+  14          //编译连接后  code 区的大小不能大于 48K (0xC000)
+  15          //####################################################################
+  16          
+  17          
+  18          //==========================================================
+  19          //Fun_UserAppAlg 用户算法入口
+  20          //用户的算法在此实现
+  21          //==========================================================
+  22          BYTE UserAppAlg(BYTE xdata *RxComm,BYTE xdata *TxComm)
+  23          {
+  24   1       BYTE cmd;
+  25   1      
+  26   1       cmd = RxComm[1]; 
+  27   1      
+  28   1       if (cmd == 0x01) 
+  29   1       {
+  30   2        test_fun1(RxComm  , TxComm);
+  31   2       }
+  32   1       
+  33   1       if (cmd == 0x02) 
+  34   1        {  
+  35   2         test_fun2(RxComm, TxComm);
+  36   2        }
+  37   1      
+  38   1       if (cmd == 0x03) 
+  39   1       {
+  40   2        test_fun3(RxComm,TxComm);
+  41   2       }
+  42   1      
+  43   1      
+  44   1       return 1;
+  45   1      
+  46   1      }
+  47          
+  48          //=====================以下main 函数不要修改===========================
+  49          void main()
+  50          {
+  51   1       BYTE xdata inbuf[1],outbuf[1];
+  52   1       UserAppAlg(inbuf,outbuf);
+  53   1       for(;;);
+  54   1      }
+C51 COMPILER V7.00  MAINFILE                                                               03/23/2011 10:12:47 PAGE 2   
+
+  55          //=====================================================================
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     70    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----       2
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

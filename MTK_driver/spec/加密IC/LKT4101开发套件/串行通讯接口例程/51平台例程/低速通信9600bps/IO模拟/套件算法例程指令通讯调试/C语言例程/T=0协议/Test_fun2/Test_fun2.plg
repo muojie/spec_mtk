@@ -1,0 +1,16 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+D:\程序\IO模拟\算法测试例程\C语言版\T=0协议\Test_fun2\Test_fun2.uvproj
+Project File Date:  04/01/2011
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling Test_fun2.c...
+linking...
+Program Size: data=67.0 xdata=0 code=495
+creating hex file from "Test_fun2"...
+"Test_fun2" - 0 Error(s), 0 Warning(s).

@@ -1,0 +1,128 @@
+C51 COMPILER V9.01   TEST_FUN2                                                             04/06/2011 11:37:03 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE TEST_FUN2
+OBJECT MODULE PLACED IN Test_fun2.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Test_fun2.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include<reg51.h>
+   2          
+   3          #define uchar  unsigned  char
+   4          #define uint   unsigned  int
+   5          sbit    REST = P2^2;
+   6          sbit    IO   = P2^0;
+   7          
+   8          uchar   buf[25];                                                                                //Êý¾Ý»º´æÇø
+   9          uchar   SendBuf_1[20]={0xA3,0xA3,0x11,0x02,0xAA,0xAA,0xAA,0xAA,
+  10                                                          0xAA,0xAA,0xAA,0xAA,0xFF,0xFF,0xFF,0xFF,
+  11                                                          0xFF,0xFF,0xFF,0xFF};
+  12          
+  13          /*****************ÓÃÓÚÎ¢µ÷·¢ËÍ½ÓÊÕµÄÊ±¼ä**************/
+  14          void Delay()                                            
+  15          {
+  16   1              uchar   i;
+  17   1              for(i=0;i<3;i++);
+  18   1      }       
+  19                  
+  20          /*********************·¢ËÍ½ÓÊÕÒ»Î»µÄÊ±¼ä etu=372/3.579 = 104us*************
+  21          ***************Òò·¢ËÍ½ÓÊÕÆäËüÖ¸ÁîÒ²ÒªÕ¼ÓÃÊ±¼äÕâÀïµÄ     DelayEtu = 90us********/
+  22          void Delay_100us()                                      
+  23          {                                                                       
+  24   1              uchar   i;
+  25   1              for(i=0;i<28;i++);
+  26   1      }
+  27          
+  28          /*****************ÉÏµç·¢ËÍ¸´Î»ÇëÇó******************/
+  29          void Rest()                                                     
+  30          {
+  31   1              Delay() ;
+  32   1              IO   = 1;                                       //±ØÐëÎª¸ßµÈ´ý½ÓÊÕLKT¼ÓÃÜÐ¾Æ¬·¢ËÍµÄÆðÊ¼Î»
+  33   1              REST = 0;
+  34   1              Delay_100us();
+  35   1              REST = 1; 
+  36   1      } 
+  37          
+  38          /****************¶ÁÈ¡LTK4101µÄ·µ»ØÐÅÏ¢²¢½«Æä´æÈëÊý¾Ý»º´æÇø****************/
+  39          void ReceArt(char m)                       
+  40          {
+  41   1              uchar i,n;
+  42   1              
+  43   1              for(n=0;n<m;n++)
+  44   1              {       
+  45   2                      while(IO);
+  46   2                      for(i=0;i<8;i++)                   //¶ÁÒ»¸ö×Ö½Úº¯Êý 
+  47   2                      {
+  48   3                              Delay_100us();
+  49   3                              buf[n] >>= 1;
+  50   3                              if(1 == IO)
+  51   3                                      buf[n] |= 0x80;
+  52   3                      }
+  53   2                      Delay_100us();
+  54   2                      ACC = buf[n];                                                      
+  55   2                      if(IO == P)                                 //ÅÐ¶ÏÅ¼Ð£ÑéÎ»
+C51 COMPILER V9.01   TEST_FUN2                                                             04/06/2011 11:37:03 PAGE 2   
+
+  56   2                      {
+  57   3                         Delay_100us();
+  58   3                         Delay_100us();
+  59   3                      }       
+  60   2              }
+  61   1      
+  62   1      }
+  63          
+  64          /****************·¢ËÍËæ»úÊýÃüÁîÐÅÏ¢***************/
+  65          
+  66          void SendChar(uchar m,uchar Send[])
+  67          {
+  68   1          uchar i,n,flag,SendChar;
+  69   1              
+  70   1              for(n = 0 ;n<m ; n++)
+  71   1              {       
+  72   2                      ACC  = Send[n] ;
+  73   2                      flag = P;
+  74   2                      SendChar =      Send[n];                        ////½«·¢ËÍµÄ×Ö½Ú·ÅÔÚSendChar
+  75   2                      IO  = 0;
+  76   2                      for(i=0;i<8;i++)                           //·¢ËÍÒ»¸ö×Ö½Ú
+  77   2                      {
+  78   3                              Delay_100us();
+  79   3                              if(SendChar & 0x01)
+  80   3                                      IO = 1;
+  81   3                              else
+  82   3                                      IO = 0;
+  83   3                              SendChar >>=1;
+  84   3                      }
+  85   2                      Delay_100us();
+  86   2                      IO = flag;                                         //·¢ËÍ±£´æµÄÆæÅ¼Î»
+  87   2                      Delay_100us();  
+  88   2                      IO = 1;                                            //·¢ËÍÍ£Ö¹Î»
+  89   2                      Delay_100us();  
+  90   2                      Delay_100us();                  
+  91   2              }
+  92   1      }        
+  93          
+  94          void main()
+  95          {
+  96   1              Rest();                                                    //±ØÐë½ÓÊÕÍê»òÑÓÊ±×ã¹»³¤£¨´óÓÚLKT¼ÓÃÜÐ¾Æ¬ÏòMCU´«ËÍ·µ»ØÐÅÏ¢µÄÊ±¼ä£©²ÅÄÜÏòLKT¼ÓÃÜÐ¾Æ¬·¢ËÍÊ
+             -ý¾Ý
+  97   1              ReceArt(17);                                      
+  98   1              Delay_100us();                                     //½«SendBufµÄ³¤¶ÈºÍÊ×µØÖ·´«¸øSendChar(uchar m,uchar Send[]
+  99   1              SendChar(20,SendBuf_1)  ;
+ 100   1              ReceArt(10);    
+ 101   1              while(1);
+ 102   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    235    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     45       7
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

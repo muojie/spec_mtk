@@ -1,0 +1,54 @@
+C51 COMPILER V7.00  FUN_2                                                                  03/23/2011 10:12:47 PAGE 1   
+
+
+C51 COMPILER V7.00, COMPILATION OF MODULE FUN_2
+OBJECT MODULE PLACED IN .\OUT\OBJ\fun_2.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE fun_2.c BROWSE DEBUG OBJECTEXTEND PRINT(.\OUT\LST\fun_2.lst) OBJECT(.\OUT\O
+                    -BJ\fun_2.obj)
+
+stmt level    source
+
+   1          #include "cos_fun.h"
+   2          
+   3          //========================================
+   4          //test_fun2 功能是写数据到NVM
+   5          
+   6          //========================================
+   7           void test_fun2(unsigned char xdata *RxComm,unsigned char xdata *TxComm)
+   8           {
+   9   1       
+  10   1          WriteNVM(RxComm[2]*0x100 + RxComm[3],&RxComm[5],RxComm[4]); // 存储区写:RxComm[2]RxComm[3]表示偏移地址
+             -，RxComm[4]写入数据的长度，RxComm[5].。。。之后是写入的数据
+  11   1          TxComm[0] = 0;
+  12   1              
+  13   1       }
+  14          
+  15          
+  16          //========================================
+  17          //test_fun3 功能是读取NVM数据
+  18          //
+  19          //========================================
+  20          void test_fun3(unsigned char xdata *RxComm,unsigned char xdata *TxComm) 
+  21          {
+  22   1      
+  23   1         ReadNVM(RxComm[2]*0x100 + RxComm[3],&TxComm[1],RxComm[4]); // 存储区读 其中RxComm[2]RxComm[3]是读数据的
+             -起始地址; TxComm[1]是读出的数据；RxComm[4]存放需要读取的数据长度
+  24   1         TxComm[0] = RxComm[4];                                       //
+  25   1         
+  26   1       }
+  27          
+  28          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    140    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

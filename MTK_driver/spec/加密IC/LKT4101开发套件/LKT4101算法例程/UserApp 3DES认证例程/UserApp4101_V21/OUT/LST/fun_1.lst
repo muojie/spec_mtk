@@ -1,0 +1,74 @@
+C51 COMPILER V7.00  FUN_1                                                                  03/23/2011 10:12:47 PAGE 1   
+
+
+C51 COMPILER V7.00, COMPILATION OF MODULE FUN_1
+OBJECT MODULE PLACED IN .\OUT\OBJ\fun_1.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE fun_1.c BROWSE DEBUG OBJECTEXTEND PRINT(.\OUT\LST\fun_1.lst) OBJECT(.\OUT\O
+                    -BJ\fun_1.obj)
+
+stmt level    source
+
+   1          #include "cos_fun.h"
+   2          
+   3          
+   4          //========================================
+   5          // test_fun1 功能是计算DES加密
+   6          // RxComm[1]:
+   7          // RxComm[2..9]: 8字节密钥
+   8          // RxComm[10] : 待加密数据的长度
+   9          // RxComm[11....N]: 待加密数据
+  10          //========================================
+  11          void test_fun1(unsigned char xdata *RxComm,unsigned char xdata *TxComm)
+  12           {
+  13   1        unsigned char i;
+  14   1        unsigned char xdata in[129];  //待加密的数据长度 不超过128字节
+  15   1        unsigned char xdata out[128];
+  16   1        unsigned char xdata key[9];
+  17   1        unsigned char xdata *BUFF;
+  18   1      
+  19   1        key[0]  = 16;
+  20   1        
+  21   1        
+  22   1        ReadNVM(0x0000,&BUFF[0],0x10);
+  23   1        for(i=0;i<16;i++)
+  24   1        {
+  25   2         key[i+1] = BUFF[i];          
+  26   2        }
+  27   1      
+  28   1        in[0] = RxComm[2]; // 待加密数据的长度
+  29   1      
+  30   1        for(i=0;i<in[0] ;i++)
+  31   1        {
+  32   2         in[i+1] = RxComm[i+3];
+  33   2        }
+  34   1      
+  35   1        DESEncrypt(in,key,out);// in,key 两个输入参数都是LV格式,输出参数out也是LV格式.
+  36   1      
+  37   1        for(i=0;i<out[0];i++)
+  38   1        {
+  39   2         TxComm[i+1] = out[i+1]; //输出8字节DES加密的结果
+  40   2        }
+  41   1      
+  42   1         TxComm[0]=out[0];  //输出长度为 out[0]
+  43   1       }
+  44          
+  45          
+  46          
+  47          
+  48          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    187    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----     266
+C51 COMPILER V7.00  FUN_1                                                                  03/23/2011 10:12:47 PAGE 2   
+
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

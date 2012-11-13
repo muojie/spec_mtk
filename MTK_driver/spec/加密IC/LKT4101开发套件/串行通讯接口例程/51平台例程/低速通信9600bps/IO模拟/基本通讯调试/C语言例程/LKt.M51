@@ -1,0 +1,239 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        04/06/2011  13:23:57  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE STARTUP.obj, LKT.obj TO LKt
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  LKT.obj (LKT)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  LKt (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     001EH     UNIT         ?DT?LKT
+            DATA    0026H     0002H     UNIT         _DATA_GROUP_
+            IDATA   0028H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     008CH     UNIT         ?C_C51STARTUP
+            CODE    088CH     005BH     UNIT         ?PR?_RECEART?LKT
+            CODE    08E7H     0048H     UNIT         ?PR?SENDCHAR?LKT
+            CODE    092FH     0018H     UNIT         ?PR?MAIN?LKT
+            CODE    0947H     000DH     UNIT         ?PR?REST?LKT
+            CODE    0954H     0008H     UNIT         ?C_INITSEG
+            CODE    095CH     0007H     UNIT         ?PR?DELAY?LKT
+            CODE    0963H     0007H     UNIT         ?PR?DELAY_100US?LKT
+
+
+
+OVERLAY MAP OF MODULE:   LKt (?C_STARTUP)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?LKT
+  +--> ?C_INITSEG
+
+?PR?MAIN?LKT                   -----    -----
+  +--> ?PR?REST?LKT
+  +--> ?PR?_RECEART?LKT
+  +--> ?PR?DELAY_100US?LKT
+  +--> ?PR?SENDCHAR?LKT
+
+?PR?REST?LKT                   -----    -----
+  +--> ?PR?DELAY?LKT
+  +--> ?PR?DELAY_100US?LKT
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/06/2011  13:23:57  PAGE 2
+
+
+
+?PR?_RECEART?LKT               0026H    0002H
+  +--> ?PR?DELAY_100US?LKT
+
+?PR?SENDCHAR?LKT               0026H    0001H
+  +--> ?PR?DELAY_100US?LKT
+
+
+
+SYMBOL TABLE OF MODULE:  LKt (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0800H         SEGMENT       ?C_C51STARTUP
+  I:0028H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0803H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0800H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:0800H         LINE#         133
+  C:0802H         LINE#         134
+  C:0803H         LINE#         135
+  C:0804H         LINE#         136
+  C:0806H         LINE#         185
+  C:0809H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        LKT
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  C:08E7H         PUBLIC        SendChar
+  B:00A0H.0       PUBLIC        IO
+  C:0947H         PUBLIC        Rest
+  C:092FH         PUBLIC        main
+  C:088CH         PUBLIC        _ReceArt
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/06/2011  13:23:57  PAGE 3
+
+
+  D:0008H         PUBLIC        SendBuf
+  D:000DH         PUBLIC        buf
+  B:00A0H.2       PUBLIC        REST
+  D:00E0H         PUBLIC        ACC
+  C:0963H         PUBLIC        Delay_100us
+  B:00D0H.0       PUBLIC        P
+  C:095CH         PUBLIC        Delay
+  -------         PROC          DELAY
+  -------         DO            
+  D:0007H         SYMBOL        i
+  -------         ENDDO         
+  C:095CH         LINE#         14
+  C:095CH         LINE#         15
+  C:095CH         LINE#         17
+  C:0962H         LINE#         18
+  -------         ENDPROC       DELAY
+  -------         PROC          DELAY_100US
+  -------         DO            
+  D:0007H         SYMBOL        i
+  -------         ENDDO         
+  C:0963H         LINE#         22
+  C:0963H         LINE#         23
+  C:0963H         LINE#         25
+  C:0969H         LINE#         26
+  -------         ENDPROC       DELAY_100US
+  -------         PROC          REST
+  C:0947H         LINE#         29
+  C:0947H         LINE#         30
+  C:0947H         LINE#         31
+  C:094AH         LINE#         32
+  C:094CH         LINE#         33
+  C:094EH         LINE#         34
+  C:0951H         LINE#         35
+  C:0953H         LINE#         36
+  -------         ENDPROC       REST
+  -------         PROC          _RECEART
+  D:0026H         SYMBOL        m
+  -------         DO            
+  D:0006H         SYMBOL        i
+  D:0027H         SYMBOL        n
+  -------         ENDDO         
+  C:088CH         LINE#         39
+  C:088EH         LINE#         40
+  C:088EH         LINE#         43
+  C:08A5H         LINE#         44
+  C:08A5H         LINE#         45
+  C:08A8H         LINE#         46
+  C:08AAH         LINE#         47
+  C:08AAH         LINE#         48
+  C:08ADH         LINE#         49
+  C:08BBH         LINE#         50
+  C:08BEH         LINE#         51
+  C:08C7H         LINE#         52
+  C:08CBH         LINE#         53
+  C:08CEH         LINE#         54
+  C:08D4H         LINE#         55
+  C:08DCH         LINE#         56
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/06/2011  13:23:57  PAGE 4
+
+
+  C:08DCH         LINE#         57
+  C:08DFH         LINE#         58
+  C:08E2H         LINE#         59
+  C:08E2H         LINE#         60
+  C:08E6H         LINE#         62
+  -------         ENDPROC       _RECEART
+  -------         PROC          SENDCHAR
+  -------         DO            
+  D:0005H         SYMBOL        i
+  D:0006H         SYMBOL        n
+  D:0026H         SYMBOL        flag
+  -------         ENDDO         
+  C:08E7H         LINE#         66
+  C:08E7H         LINE#         67
+  C:08E7H         LINE#         70
+  C:08E9H         LINE#         71
+  C:08E9H         LINE#         72
+  C:08EEH         LINE#         73
+  C:08F4H         LINE#         74
+  C:08F6H         LINE#         75
+  C:08F8H         LINE#         76
+  C:08F8H         LINE#         77
+  C:08FBH         LINE#         78
+  C:0904H         LINE#         79
+  C:0908H         LINE#         81
+  C:090AH         LINE#         82
+  C:0912H         LINE#         83
+  C:0916H         LINE#         84
+  C:0919H         LINE#         85
+  C:091FH         LINE#         86
+  C:0922H         LINE#         87
+  C:0924H         LINE#         88
+  C:0927H         LINE#         89
+  C:092AH         LINE#         90
+  C:092EH         LINE#         91
+  -------         ENDPROC       SENDCHAR
+  -------         PROC          MAIN
+  C:092FH         LINE#         93
+  C:092FH         LINE#         94
+  C:092FH         LINE#         95
+  C:0932H         LINE#         96
+  C:0937H         LINE#         97
+  C:093AH         LINE#         98
+  C:093DH         LINE#         99
+  C:0942H         LINE#         100
+  C:0945H         LINE#         101
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        LKT
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00ECH BYTE (11%) *
+******************************************************************************
+
+Program Size: data=41.0 xdata=0 code=365
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

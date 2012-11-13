@@ -1,0 +1,11 @@
+".\OUT\OBJ\MainFile.obj",
+".\OUT\OBJ\UserAppSTARTUP.obj",
+".\OUT\OBJ\MyAsmFun.obj",
+".\OUT\OBJ\fun_2.obj",
+".\OUT\OBJ\fun_1.obj" 
+TO ".\OUT\OBJ\UserApp" 
+PRINT(".\OUT\LST\UserApp.m51") RAMSIZE(256) 
+CODE( 0x4000-0xFFFF , ?PR?_USERAPPALG?MAINFILE(0x4000) )
+XDATA( 0x0480-0x06FF )
+DATA( 0x28 )
+IDATA( 0xFF )

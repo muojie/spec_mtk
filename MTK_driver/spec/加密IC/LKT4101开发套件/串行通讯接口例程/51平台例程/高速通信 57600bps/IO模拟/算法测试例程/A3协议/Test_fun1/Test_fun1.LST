@@ -1,0 +1,199 @@
+C51 COMPILER V9.01   TEST_FUN1                                                             05/27/2011 10:54:12 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE TEST_FUN1
+OBJECT MODULE PLACED IN Test_fun1.OBJ
+COMPILER INVOKED BY: d:\Keil_ARM_51开发环境\C51\BIN\C51.EXE Test_fun1.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          
+   2          /*********************单片机晶振为24MHZ    加密芯片使用3.6864MHZ *******************************/
+   3          
+   4          #include<reg51.h>
+   5          
+   6          #define uchar  unsigned  char
+   7          #define uint   unsigned  int
+   8          
+   9          sbit    REST = P2^2;                        //定义复位脚
+  10          sbit    IO   = P2^0;                            //定义数据脚                                                    
+  11                                                                                                                                                                          
+  12          uchar   buf[25];                                                                                        //数据缓存区
+  13          uchar   SendBuf[4]={0xFF,0x10,0x94,0x7B} ;                                      //      发送高速通讯命令，该命令的通讯速度为（fosc/64） 
+  14          uchar   SendBuf_1[20]={0xA3,0x12,0x01,0x01,0x02,0x03,0x04,0x05,
+  15                                                          0x06,0x07,0x08,0x08,0x11,0x22,0x33,0x44,
+  16                                                          0x55,0x66,0x77,0x88};           
+  17          /*发送命令实现DES加密演示命令应返回 A3  08 6C5E94DCADD39F1D */
+  18          
+  19          
+  20          /*****************用于微调发送接收的时间**************/
+  21          void Delay_33us()                                               
+  22          {
+  23   1              uchar   i;
+  24   1              for(i=0;i<19;i++);
+  25   1      }       
+  26                  
+  27          /*********************发送接收一位的时间 etu=372/3.6864 = 100us*************
+  28          ***************因发送接收其它指令也要占用时间这里的     DelayEtu = 90us********/
+  29          void Delay_90us()                                       
+  30          {                                                                       
+  31   1              uchar   i;
+  32   1              for(i=0;i<58;i++);
+  33   1      }
+  34          
+  35          
+  36          /*****************上电发送复位请求******************/
+  37          void Rest()                                                     
+  38          {
+  39   1              IO   = 1;                                       //必须为高等待接收LKT加密芯片发送的起始位
+  40   1              REST = 0;                                               
+  41   1              Delay_90us();
+  42   1              REST = 1; 
+  43   1      } 
+  44          
+  45          /****************接收加密芯片在9600kbps下的返回信息并将其存入数据缓存区****************/
+  46          void ReceArt(char m)                       
+  47          {
+  48   1              uchar i,n,sec;
+  49   1              
+  50   1              for(n=0;n<m;n++)
+  51   1              {       
+  52   2                      while(IO);
+  53   2                      Delay_33us();                       //该延时的目的是使IO口接收数据的时间在芯片返回每位数据的近似中间位置
+  54   2                      for(i=0;i<8;i++)                   //读一个字节函数 该循环一次的时间大约100us  左右
+  55   2                      {
+C51 COMPILER V9.01   TEST_FUN1                                                             05/27/2011 10:54:12 PAGE 2   
+
+  56   3                              Delay_90us();
+  57   3                              for(sec=0;sec<3;sec++);  //微调时间
+  58   3                              buf[n] >>= 1;
+  59   3                              if(1 == IO)
+  60   3                                      buf[n] |= 0x80;
+  61   3                      }
+  62   2                      Delay_90us(); 
+  63   2                      ACC = buf[n];                                                              
+  64   2                      if(IO == P)                                 //判断偶校验位
+  65   2                      {
+  66   3                          Delay_90us();                       //延时两个停止位
+  67   3                              Delay_90us();
+  68   3                      }       
+  69   2              }
+  70   1      }
+  71          
+  72          /****************接收加密芯片在57600kbps下的返回信息并将其存入数据缓存区****************/
+  73          void ReceArt_1(char m)                     
+  74          {
+  75   1              uchar i,n,sec;
+  76   1              for(n=0;n<m;n++)
+  77   1              {       
+  78   2                      while(IO);
+  79   2                      for(sec=0;sec<5;sec++);          //该延时的目的是使IO口接收数据的时间在芯片返回每位数据的近似中间位置
+  80   2                      for(i=0;i<8;i++)                     //读一个字节函数 该循环一次的时间大约17us 左右
+  81   2                      {
+  82   3                              for(sec=0;sec<5;sec++);
+  83   3                              buf[n] >>= 1;
+  84   3                              if(1 == IO)
+  85   3                                      buf[n] |= 0x80;
+  86   3                      }
+  87   2                      for(sec=0;sec<10;sec++); 
+  88   2                      ACC = buf[n];                                                              
+  89   2                      if(IO == P)                                 //判断偶校验位
+  90   2                      {
+  91   3                              Delay_33us();                   //延时两个停止位
+  92   3                      }       
+  93   2              }
+  94   1      }
+  95          
+  96          /****************发送加密芯片提速命令****************/
+  97          
+  98          void SendChar(uchar m,uchar Send[])
+  99          {
+ 100   1          uchar i,n,flag,sec,SendChar;
+ 101   1              
+ 102   1              for(n = 0 ;n<m ; n++)
+ 103   1                      {        
+ 104   2                              
+ 105   2                              ACC  = Send[n] ;
+ 106   2                              flag = P;
+ 107   2                              SendChar =      Send[n];                        //将发送的字节放在SendChar              
+ 108   2                              IO  = 0;        
+ 109   2                              for(i=0;i<8;i++)                           //发送一个字节  该循环一次的时间大约100us 左右
+ 110   2                              {
+ 111   3                                      Delay_90us();   
+ 112   3                                      for(sec=0;sec<5;sec++); 
+ 113   3                                      if(SendChar & 0x01)
+ 114   3                                              IO = 1;
+ 115   3                                      else
+ 116   3                                              IO = 0;
+ 117   3                                      SendChar >>=1;
+C51 COMPILER V9.01   TEST_FUN1                                                             05/27/2011 10:54:12 PAGE 3   
+
+ 118   3                              }
+ 119   2                              Delay_90us();
+ 120   2                              IO = flag;                                         //发送保存的奇偶位
+ 121   2                              Delay_90us();   
+ 122   2                              IO = 1;                                            //发送停止位
+ 123   2                              Delay_90us();                              //延时两个停止位
+ 124   2                              Delay_90us();   
+ 125   2                      }       
+ 126   1      }        
+ 127           
+ 128           /****************提速成57600之后发送获取随机数命令****************/
+ 129          void SendChar_1(uchar m,uchar Send[])
+ 130          {
+ 131   1          uchar i,n,flag,sec,SendChar;
+ 132   1              
+ 133   1                      for(n = 0 ;n<m ; n++)
+ 134   1                      {       
+ 135   2                              
+ 136   2                              ACC  = Send[n] ;
+ 137   2                              flag = P;  
+ 138   2                              SendChar =      Send[n];                        //将发送的字节放在SendChar       
+ 139   2                              IO  = 0;
+ 140   2                              for(i=0;i<8;i++)                           //发送一个字节  该循环一次的时间大约17us 左右
+ 141   2                              {
+ 142   3                                      for(sec=0;sec<7;sec++);
+ 143   3                                      if(SendChar & 0x01)
+ 144   3                                              IO = 1;
+ 145   3                                      else
+ 146   3                                              IO = 0;
+ 147   3                                      SendChar >>=1;
+ 148   3                              }
+ 149   2                              for(sec=0;sec<9;sec++);
+ 150   2                              IO = flag;                                         //发送保存的奇偶位
+ 151   2                              for(sec=0;sec<9;sec++); 
+ 152   2                              IO = 1;                                            //发送停止位
+ 153   2                              for(sec=0;sec<11;sec++);                
+ 154   2                      }
+ 155   1      }
+ 156          
+ 157          void main()
+ 158          {
+ 159   1              Rest();
+ 160   1              ReceArt(17);                                 //必须接收完或延时足够长（大于LKT加密芯片向MCU传送返回信息的时间）才能向LKT加密芯片
+             -发送数据
+ 161   1              Delay_90us();   
+ 162   1      
+ 163   1              SendChar(4,SendBuf)     ;                       //将SendBuf的长度和首地址传给SendChar(uchar m,uchar Send[])
+ 164   1              ReceArt(4);                                             //返回数据应为0xFF,0x10,0x94,0x7B
+ 165   1      
+ 166   1              SendChar_1(20,SendBuf_1)        ;       //将SendBuf_1的长度和首地址传给SendChar_1(uchar m,uchar Send[])
+ 167   1              ReceArt_1(10);                                  //返回数据应为A3  08 6C5E94DCADD39F1D 
+ 168   1              while(1);
+ 169   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    458    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     49      14
+   IDATA SIZE       =   ----    ----
+C51 COMPILER V9.01   TEST_FUN1                                                             05/27/2011 10:54:12 PAGE 4   
+
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

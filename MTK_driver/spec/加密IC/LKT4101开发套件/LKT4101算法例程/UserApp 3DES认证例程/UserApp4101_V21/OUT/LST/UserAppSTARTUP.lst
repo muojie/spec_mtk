@@ -1,0 +1,135 @@
+A51 MACRO ASSEMBLER  USERAPPSTARTUP                                                       03/23/2011 10:12:47 PAGE     1
+
+
+MACRO ASSEMBLER A51 V7.00a
+OBJECT MODULE PLACED IN .\OUT\OBJ\UserAppSTARTUP.obj
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE UserAppSTARTUP.A51 SET(SMALL) DEBUG PRINT(.\OUT\LST\UserAppSTARTUP.lst) OB
+                      JECT(.\OUT\OBJ\UserAppSTARTUP.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     $nomod51 
+                       2     
+                       3     ;------------------------------------------------------------------------------
+                       4     ;  This file is part of the C51 Compiler package
+                       5     ;               ; the absolute start-address of IDATA memory is always 0
+  0080                 6     IDATALEN        EQU     80H     ; the length of IDATA memory in bytes.
+                       7     ;
+  0000                 8     XDATASTART      EQU     0H      ; the absolute start-address of XDATA memory
+  0000                 9     XDATALEN        EQU     0H      ; the length of XDATA memory in bytes.
+                      10     ;
+  0000                11     PDATASTART      EQU     0H      ; the absolute start-address of PDATA memory
+  0000                12     PDATALEN        EQU     0H      ; the length of PDATA memory in bytes.
+                      13     ;
+                      14     ;  Notes:  The IDATA space overlaps physically the DATA and BIT areas of the
+                      15     ;          8051 CPU. At minimum the memory space occupied from the C51 
+                      16     ;          run-time routines must be set to zero.
+                      17     ;------------------------------------------------------------------------------
+                      18     ;
+                      19     ;  Reentrant Stack Initilization
+                      20     ;
+                      21     ;  The following EQU statements define the stack pointer for reentrant
+                      22     ;  functions and initialized it:
+                      23     ;
+                      24     ;  Stack Space for reentrant functions in the SMALL model.
+  0000                25     IBPSTACK        EQU     0       ; set to 1 if small reentrant is used.
+  0100                26     IBPSTACKTOP     EQU     0FFH+1  ; set top of stack to highest location+1.
+                      27     ;
+                      28     ;  Stack Space for reentrant functions in the LARGE model.      
+  0000                29     XBPSTACK        EQU     0       ; set to 1 if large reentrant is used.
+  0000                30     XBPSTACKTOP     EQU     0FFFFH+1; set top of stack to highest location+1.
+                      31     ;
+                      32     ;  Stack Space for reentrant functions in the COMPACT model.    
+  0000                33     PBPSTACK        EQU     0       ; set to 1 if compact reentrant is used.
+  0000                34     PBPSTACKTOP     EQU     0FFFFH+1; set top of stack to highest location+1.
+                      35     ;
+                      36     ;------------------------------------------------------------------------------
+                      37     ;
+                      38     ;  Page Definition for Using the Compact Model with 64 KByte xdata RAM
+                      39     ;
+                      40     ;  The following EQU statements define the xdata page used for pdata
+                      41     ;  variables. The EQU PPAGE must conform with the PPAGE control used
+                      42     ;  in the linker invocation.
+                      43     ;
+  0000                44     PPAGEENABLE     EQU     0       ; set to 1 if pdata object are used.
+                      45     ;
+  0000                46     PPAGE           EQU     0       ; define PPAGE number.
+                      47     ;
+  00A0                48     PPAGE_SFR       DATA    0A0H    ; SFR that supplies uppermost address byte
+                      49     ;               (most 8051 variants use P2 as uppermost address byte)
+                      50     ;
+                      51     ;------------------------------------------------------------------------------
+                      52     
+                      53     ; Standard SFR Symbols 
+  00E0                54     ACC     DATA    0E0H
+  00F0                55     B       DATA    0F0H
+  0081                56     SP      DATA    81H
+  0082                57     DPL     DATA    82H
+A51 MACRO ASSEMBLER  USERAPPSTARTUP                                                       03/23/2011 10:12:47 PAGE     2
+
+  0083                58     DPH     DATA    83H
+                      59     
+                      60                     NAME    ?C_STARTUP
+                      61     
+                      62     
+                      63     ?C_C51STARTUP   SEGMENT   CODE
+                      64     ?STACK          SEGMENT   IDATA
+                      65     
+----                  66                     RSEG    ?STACK
+0000                  67                     DS      1
+                      68     
+                      69                     EXTRN CODE (?C_START)
+                      70                     EXTRN CODE (MAIN)
+                      71     
+                      72                     PUBLIC  ?C_STARTUP
+                      73     
+----                  74                     CSEG    AT      0
+0000 020000   F       75     ?C_STARTUP:     LJMP    STARTUP1
+                      76     
+----                  77                     RSEG    ?C_C51STARTUP
+                      78     
+0000                  79     STARTUP1:
+                      80     
+0000 758100   F       81                     MOV     SP,#?STACK-1
+0003 020000   F       82                     LJMP    MAIN
+                      83     
+                      84                     END
+A51 MACRO ASSEMBLER  USERAPPSTARTUP                                                       03/23/2011 10:12:47 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+?C_C51STARTUP. . .  C SEG    0006H       REL=UNIT
+?C_START . . . . .  C ADDR   -----       EXT
+?C_STARTUP . . . .  C ADDR   0000H   A   
+?STACK . . . . . .  I SEG    0001H       REL=UNIT
+ACC. . . . . . . .  D ADDR   00E0H   A   
+B. . . . . . . . .  D ADDR   00F0H   A   
+DPH. . . . . . . .  D ADDR   0083H   A   
+DPL. . . . . . . .  D ADDR   0082H   A   
+IBPSTACK . . . . .  N NUMB   0000H   A   
+IBPSTACKTOP. . . .  N NUMB   0100H   A   
+IDATALEN . . . . .  N NUMB   0080H   A   
+MAIN . . . . . . .  C ADDR   -----       EXT
+PBPSTACK . . . . .  N NUMB   0000H   A   
+PBPSTACKTOP. . . .  N NUMB   0000H   A   
+PDATALEN . . . . .  N NUMB   0000H   A   
+PDATASTART . . . .  N NUMB   0000H   A   
+PPAGE. . . . . . .  N NUMB   0000H   A   
+PPAGEENABLE. . . .  N NUMB   0000H   A   
+PPAGE_SFR. . . . .  D ADDR   00A0H   A   
+SP . . . . . . . .  D ADDR   0081H   A   
+STARTUP1 . . . . .  C ADDR   0000H   R   SEG=?C_C51STARTUP
+XBPSTACK . . . . .  N NUMB   0000H   A   
+XBPSTACKTOP. . . .  N NUMB   0000H   A   
+XDATALEN . . . . .  N NUMB   0000H   A   
+XDATASTART . . . .  N NUMB   0000H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

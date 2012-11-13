@@ -1,0 +1,126 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+E:\NXP LPC1768\4101高速程序\IO 模拟\算法测试\T=0协议\fun1\fun1.uvproj
+Project File Date:  05/16/2011
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling startup_LPC17xx.s...
+compiling system_LPC17xx.c...
+compiling fun1.c...
+fun1.c(59): error:  #20: identifier "uchar" is undefined
+fun1.c:   uchar Send_2[23]={0x80,0x08,0x00,0x00,0x12,0x01,0x01,0x02,
+fun1.c:   ^
+fun1.c(63): error:  #20: identifier "uchar" is undefined
+fun1.c:   uchar Send_3[5]={0x00,0xc0,0x00,0x00,0x08}    ;
+fun1.c:   ^
+fun1.c(164): warning:  #223-D: function "SendChar_1" declared implicitly
+fun1.c:                 SendChar_1(18,&Send_2[5]);
+fun1.c:                 ^
+fun1.c(165): warning:  #223-D: function "ReceArt_1" declared implicitly
+fun1.c:                 ReceArt_1(2);   
+fun1.c:                 ^
+fun1.c(171): warning:  #223-D: function "SendChar_1" declared implicitly
+fun1.c:                 SendChar_1(5,Send_3) ;                           
+fun1.c:                 ^
+fun1.c(172): warning:  #223-D: function "ReceArt_1" declared implicitly
+fun1.c:                 ReceArt_1(11);
+fun1.c:                 ^
+fun1.c: fun1.c: 4 warnings, 2 errors
+Target not created
+Build target 'Target 1'
+assembling startup_LPC17xx.s...
+compiling system_LPC17xx.c...
+compiling fun1.c...
+fun1.c(164): warning:  #223-D: function "SendChar_1" declared implicitly
+fun1.c:                 SendChar_1(18,&Send_2[5]);
+fun1.c:                 ^
+fun1.c(165): warning:  #223-D: function "ReceArt_1" declared implicitly
+fun1.c:                 ReceArt_1(2);   
+fun1.c:                 ^
+fun1.c(171): warning:  #223-D: function "SendChar_1" declared implicitly
+fun1.c:                 SendChar_1(5,Send_3) ;                           
+fun1.c:                 ^
+fun1.c(172): warning:  #223-D: function "ReceArt_1" declared implicitly
+fun1.c:                 ReceArt_1(11);
+fun1.c:                 ^
+fun1.c: fun1.c: 4 warnings, 0 errors
+linking...
+.\Obj\fun1.axf: Error: L6218E: Undefined symbol ReceArt_1 (referred from fun1.o).
+.\Obj\fun1.axf: Error: L6218E: Undefined symbol SendChar_1 (referred from fun1.o).
+.\Obj\fun1.axf: Not enough information to list image symbols.
+.\Obj\fun1.axf: Finished: 1 information, 0 warning and 2 error messages.
+Target not created
+Build target 'Target 1'
+assembling startup_LPC17xx.s...
+compiling system_LPC17xx.c...
+compiling fun1.c...
+fun1.c(171): warning:  #223-D: function "SendChar_1" declared implicitly
+fun1.c:                 SendChar_1(1,5,Send_3) ;                                 
+fun1.c:                 ^
+fun1.c(172): warning:  #223-D: function "ReceArt_1" declared implicitly
+fun1.c:                 ReceArt_1(1,11);
+fun1.c:                 ^
+fun1.c: fun1.c: 2 warnings, 0 errors
+linking...
+.\Obj\fun1.axf: Error: L6218E: Undefined symbol ReceArt_1 (referred from fun1.o).
+.\Obj\fun1.axf: Error: L6218E: Undefined symbol SendChar_1 (referred from fun1.o).
+.\Obj\fun1.axf: Not enough information to list image symbols.
+.\Obj\fun1.axf: Finished: 1 information, 0 warning and 2 error messages.
+Target not created
+Build target 'Target 1'
+assembling startup_LPC17xx.s...
+compiling system_LPC17xx.c...
+compiling fun1.c...
+linking...
+Program Size: Code=1648 RO-data=404 RW-data=36 ZI-data=644  
+FromELF: creating hex file...
+".\Obj\fun1.axf" - 0 Error(s), 0 Warning(s).
+Load "E:\\NXP LPC1768\\4101高速程序\\IO 模拟\\算法测试\\T=0协议\\fun1\\Obj\\fun1.AXF" 
+Set JLink Project File to "E:\NXP LPC1768\4101高速程序\IO 模拟\算法测试\T=0协议\fun1\JLinkSettings.ini"
+ 
+JLink info:
+------------
+DLL: V4.15n, compiled Jun 18 2010 19:55:09
+Firmware: J-Link ARM-OB STM32 compiled Mar 01 2010 17:00:09
+Hardware: V7.00
+S/N : 20090928 
+Feature(s) : RDI,FlashDL,FlashBP,JFlash,GDBFull 
+ 
+* JLink Info: TotalIRLen = 4, IRPrint = 0x01
+* JLink Info: Found Cortex-M3 r2p0, Little endian.
+* JLink Info: TPIU fitted.
+* JLink Info: ETM fitted.
+* JLink Info:   FPUnit: 6 code (BP) slots and 2 literal slots
+**JLink Warning: CPU did not halt after bootloader.
+ROMTableAddr = 0xE00FF003
+ 
+Target info:
+------------
+Device: LPC1768
+VTarget = 3.300V
+State of Pins: 
+TCK: 1, TDI: 0, TDO: 1, TMS: 0, TRES: 1, TRST: 1
+* JLink Info: TotalIRLen = 4, IRPrint = 0x01
+* JLink Info: Found Cortex-M3 r2p0, Little endian.
+* JLink Info: TPIU fitted.
+* JLink Info: ETM fitted.
+* JLink Info:   FPUnit: 6 code (BP) slots and 2 literal slots
+Hardware-Breakpoints: 6
+Software-Breakpoints: 2048
+Watchpoints:          4
+JTAG speed: 2000 kHz
+ 
+Erase Done.
+Programming Done.
+Verify OK.
+* JLink Info: TotalIRLen = 4, IRPrint = 0x01
+* JLink Info: Found Cortex-M3 r2p0, Little endian.
+* JLink Info: TPIU fitted.
+* JLink Info: ETM fitted.
+* JLink Info:   FPUnit: 6 code (BP) slots and 2 literal slots
+**JLink Warning: CPU did not halt after bootloader.
+Application running ...

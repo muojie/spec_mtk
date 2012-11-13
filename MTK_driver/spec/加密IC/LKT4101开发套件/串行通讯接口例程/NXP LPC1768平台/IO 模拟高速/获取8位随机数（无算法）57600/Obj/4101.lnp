@@ -1,0 +1,4 @@
+--cpu Cortex-M3 ".\obj\system_lpc17xx.o" ".\obj\startup_lpc17xx.o" ".\obj\4101.o" --strict --scatter ".\Obj\4101.sct" 
+--autoat --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\Lib\4101.map" -o ".\Obj\4101.axf"

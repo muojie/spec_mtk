@@ -1,0 +1,5 @@
+*******************
+2011/11/24 Maintenance Man : Lex Hsieh
+Add stk8311/8312 HAL
+Add some error handling
+*******************

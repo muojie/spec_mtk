@@ -1,0 +1,83 @@
+v1.66 2011/12/02 Maintenance Man : Patrick Chang
+Add wakelock to ensure system could complete the PS event
+*******************
+v1.65 2011/11/25 Maintenance Man : Lex Hsieh
+Fixed "ps_code_low_thd" bug
+Report als data once als is enabled for stk31xx int mode
+sleep 500 ms of integral time for stk220x_int.c
+Added check if ALS_gain is larger than 2 times for stk31xx
+Removed ReadMe in driver. Just keep the pdf document updated
+Changed the PS threshold settings of stk31xx_switch from distance to code
+Remove instant report of proximity for stk31xx_int
+*******************
+v1.64 2011/11/9 Maintenance Man : Patrick Chang
+Remove instant event report when enable proximity sensor(STK31xx)
+Set attribute to 0644 for release mode
+(don't forget to add
+"chown system system /sys/device/platform/stk-oss/xxxx"
+in init.rc)
+*******************
+v1.63 2011/8/25 Maintenance Man : Patrick Chang
+Sync detecting direction of stk31xx interrupt mode
+*******************
+V1.62 2011/8/11 Maintenance Man : Lex Hsieh
+Fixed a bug of stk3xxx interrupt
+Change the default sampling rate of ALS to 2 hz
+Some minor fixed
+*******************
+V1.61 2011/8/2 Maintenance Man : Lex Hsieh
+Modify Kconfig for stk3131 and stk3163, and fixed some typo
+Limit the als gain to "X2", and change the corresponding functions
+Added "gpio_free" for stk220x int driver
+*******************
+V1.60 2011/7/5 Maintenance Man : Lex Hsieh
+Add stk220x interrupt mode
+Add Modified Kconfig for stk220x interrupt mode
+*******************
+v1.5.9 2011/6/23 Maintenance Man : Patrick Chang
+Fixed typo of Kconfig "Integral Time"(<->Sleep Time)
+*******************
+v1.58 2011/5/13 Maintenance Man : Patrick Chang
+Add support to Linux Kernel 2.6.35 or above
+*******************
+v1.57 2011/5/12 Maintenance Man : Patrick Chang
+Add driver version in engineering mode
+Move orginal sysfs binary node /sys/devices/platform/stk-oss/xxx to xxx_bin
+Add sysfs text mode node (orginal binary node)
+*******************
+v1.56 2011/4/6 Maintenance Man : Patrick Chang
+Remove extra engineer initializing setting (STK3101/3128)
+*******************
+v1.55 2011/3/25 Maintenance Man : Patrick Chang
+Modify STK3128/3101 -> fix endianess issue
+*******************
+v1.51 2011/3/18 Maintenance Man : Patrick Chang
+Modify all ALS drivers to support input event system.
+Remove R-set setting (use "Transmittance" setting to cover)
+
+*******************
+v1.5 -- 2011/03/05 Maintenance Man : Patrick Chang
+Move driver path to /drivers/i2c/SenseTek.
+Change driver mode from devfs to sysfs and added input event support.
+Added STK31xx proximity sensors support.
+Added several tunable parameters in ENG/DBG mode. (Mount on /sys/devices/platform/stk-xxxx/DBG)
+
+*******************
+v1.4 -- 2011/01/15 -- Maintenance Man : Patrick Chang
+Added STK2207 support.
+
+*******************
+v1.3 -- 2010/12/1 -- Maintenance Man : Patrick Chang
+
+Added both polling mode and interrupt mode support.
+Added "Transmittance" for lux-reading calibration.
+
+*******************
+v1.2 -- 2010/10/13 -- Maintenance Man : Patrick Chang
+
+Added G-Sensor Driver Support.
+
+*******************
+v1.0 -- 2010/08/15 -- Maintenance Man : Patrick Chang
+
+Initial Release

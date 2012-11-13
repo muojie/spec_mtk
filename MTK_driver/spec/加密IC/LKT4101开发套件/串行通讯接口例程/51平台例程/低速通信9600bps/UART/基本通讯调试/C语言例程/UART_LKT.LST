@@ -1,0 +1,97 @@
+C51 COMPILER V9.01   UART_LKT                                                              04/06/2011 13:30:04 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE UART_LKT
+OBJECT MODULE PLACED IN UART_LKT.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE UART_LKT.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1            /*函数功能为：（1） 实现LKT加密芯片的复位 （2）实现获取八字节的随机数*/
+   2          #include<reg51.h>
+   3          
+   4          #define uchar  unsigned  char
+   5          #define uint   unsigned  int
+   6          
+   7          uchar buf[25];
+   8          uchar Sendbuf[5]={0x00,0x84,0x00,0x00,0x08};
+   9          sbit    REST = P2^0;
+  10          sbit    IO   = P3^1;
+  11          
+  12          void Delay()                                    
+  13          {                                                                       
+  14   1              uchar   i;
+  15   1              for(i=0;i<27;i++);
+  16   1      }
+  17          
+  18          void Rest()                                                     
+  19          {
+  20   1              IO   = 1;                           //必须为高等待接收LKT加密芯片发送的起始位
+  21   1              REST = 0;
+  22   1              Delay();
+  23   1              REST = 1; 
+  24   1      }
+  25          void Uart_init()
+  26          {
+  27   1              TMOD = 0x20;                    // 定时器1工作于8位自动重载模式, 用于产生波特率
+  28   1              TH1 = 0xFD;                             // 波特率9600
+  29   1              TL1 = 0xFD;
+  30   1              SCON = 0xD0;                    // 设定串行口工作方式
+  31   1              PCON &= 0xef;                   // 波特率不倍增 
+  32   1              TR1 = 1;                                // 启动定时器1
+  33   1              IE = 0x0;                               // 禁止任何中断
+  34   1      }
+  35          
+  36          void Rece(uchar m)
+  37          {
+  38   1                 uchar i;
+  39   1                 for(i=0; i<m;i++)
+  40   1                 {
+  41   2                              while(!RI);                     // 是否有数据到来                               
+  42   2                              buf[i] = SBUF;          // 暂存接收到的数据                     
+  43   2                              RI = 0; 
+  44   2                      }
+  45   1      
+  46   1      }
+  47          void Send()
+  48          {
+  49   1              uchar i;
+  50   1              for(i=0;i<5;i++)
+  51   1              {
+  52   2                      ACC  = Sendbuf[i];
+  53   2                      TB8  = P;                               //将奇偶校验位放在TB8
+  54   2                      SBUF = Sendbuf[i];
+  55   2                      while(!TI);
+C51 COMPILER V9.01   UART_LKT                                                              04/06/2011 13:30:04 PAGE 2   
+
+  56   2                      TI = 0;
+  57   2                      Delay();
+  58   2                      
+  59   2              }
+  60   1      
+  61   1      }       
+  62          void main()
+  63          {       
+  64   1              Uart_init();
+  65   1              Rest();    
+  66   1              Rece(17);
+  67   1              Delay();
+  68   1              Send(); 
+  69   1              Rece(11);
+  70   1              P0 = buf[9];
+  71   1              while(1);       
+  72   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    113    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     30    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

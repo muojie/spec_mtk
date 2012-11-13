@@ -1,0 +1,46 @@
+A51 MACRO ASSEMBLER  MYASMFUN                                                             03/23/2011 10:12:47 PAGE     1
+
+
+MACRO ASSEMBLER A51 V7.00a
+OBJECT MODULE PLACED IN .\OUT\OBJ\MyAsmFun.obj
+ASSEMBLER INVOKED BY: C:\Keil\C51\BIN\A51.EXE MyAsmFun.a51 SET(SMALL) DEBUG PRINT(.\OUT\LST\MyAsmFun.lst) OBJECT(.\OUT\O
+                      BJ\MyAsmFun.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     PUBLIC _ReadNVM           
+                       2     PUBLIC _WriteNVM          
+                       3     PUBLIC _GetRandomData     
+                       4     PUBLIC _DESEncrypt        
+                       5     PUBLIC _DESDecrypt        
+                       6     
+                       7     
+  1000                 8      _ReadNVM               CODE 1000H
+  1010                 9      _WriteNVM              CODE 1010H
+  1020                10      _GetRandomData         CODE 1020H
+  1040                11      _DESEncrypt            CODE 1040H
+  1050                12      _DESDecrypt            CODE 1050H
+                      13     
+                      14     
+                      15     END
+                             
+                             
+A51 MACRO ASSEMBLER  MYASMFUN                                                             03/23/2011 10:12:47 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+_DESDECRYPT. . . .  C ADDR   1050H   A   
+_DESENCRYPT. . . .  C ADDR   1040H   A   
+_GETRANDOMDATA . .  C ADDR   1020H   A   
+_READNVM . . . . .  C ADDR   1000H   A   
+_WRITENVM. . . . .  C ADDR   1010H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

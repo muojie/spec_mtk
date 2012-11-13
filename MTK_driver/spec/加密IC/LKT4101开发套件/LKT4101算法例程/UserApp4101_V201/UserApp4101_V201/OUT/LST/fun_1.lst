@@ -1,0 +1,91 @@
+C51 COMPILER V7.50   FUN_1                                                                 03/12/2012 14:27:39 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE FUN_1
+OBJECT MODULE PLACED IN .\OUT\OBJ\fun_1.obj
+COMPILER INVOKED BY: e:\Keil\C51\BIN\C51.EXE fun_1.c BROWSE DEBUG OBJECTEXTEND PRINT(.\OUT\LST\fun_1.lst) OBJECT(.\OUT\O
+                    -BJ\fun_1.obj)
+
+line level    source
+
+   1          #include "cos_fun.h"
+   2          
+   3          
+   4          //========================================
+   5          // test_fun1 功能是计算DES加密
+   6          // RxComm[1]:
+   7          // RxComm[2..9]: 8字节密钥
+   8          // RxComm[10] : 待加密数据的长度
+   9          // RxComm[11....N]: 待加密数据
+  10          //========================================
+  11          void test_fun1(unsigned char xdata *RxComm,unsigned char xdata *TxComm)
+  12           {
+  13   1        unsigned char i;
+  14   1        unsigned char xdata in[129];  //待加密的数据长度 不超过128字节
+  15   1        unsigned char xdata out[128];
+  16   1        unsigned char xdata key[9];
+  17   1      
+  18   1      
+  19   1        key[0]  = 8;
+  20   1        for(i=0;i<8;i++)
+  21   1        {
+  22   2         key[i+1] = RxComm[i+2];
+  23   2        }
+  24   1      
+  25   1        in[0] = RxComm[10]; // 待加密数据的长度
+  26   1      
+  27   1        for(i=0;i<in[0] ;i++)
+  28   1        {
+  29   2         in[i+1] = RxComm[i+11];
+  30   2        }
+  31   1      
+  32   1        DESEncrypt(in,key,out);// in,key 两个输入参数都是LV格式,输出参数out也是LV格式.
+  33   1      
+  34   1        for(i=0;i<out[0];i++)
+  35   1        {
+  36   2         TxComm[i+1] = out[i+1]; //输出8字节DES加密的结果
+  37   2        }
+  38   1      
+  39   1         TxComm[0]=out[0];  //输出长度为 out[0]
+  40   1       }
+  41          
+  42          
+  43          //========================================
+  44          //test_fun3 功能是取16字节随机数
+  45          //
+  46          //========================================
+  47          void test_fun3(unsigned char xdata *TxComm) // get random
+  48          {
+  49   1       GetRandomData( TxComm + 1, 16 );
+  50   1      
+  51   1       TxComm[0] = 16 ;
+  52   1      
+  53   1      }
+  54          //========================================
+C51 COMPILER V7.50   FUN_1                                                                 03/12/2012 14:27:39 PAGE 2   
+
+  55          //test_fun4 功能是获取8字节芯片ID号
+  56          //
+  57          //========================================
+  58          void test_fun4(unsigned char xdata *TxComm) // get 8 bytes chip ID
+  59          {
+  60   1       GetChipID( TxComm + 1);
+  61   1       
+  62   1       TxComm[0] = 8 ;
+  63   1      
+  64   1      }
+  65          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    226    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----     266
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

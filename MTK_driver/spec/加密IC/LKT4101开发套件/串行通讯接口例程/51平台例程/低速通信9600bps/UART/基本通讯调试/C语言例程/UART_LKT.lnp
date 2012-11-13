@@ -1,0 +1,3 @@
+"STARTUP.obj",
+"UART_LKT.obj" 
+TO "UART_LKT" 

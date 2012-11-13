@@ -1,0 +1,150 @@
+1.
+	include/hardware/nfcc.h
+
+2.	
+	ANDROID_BUILD_TOP
+
+muojie@muojie-desktop:~/src/dp600/packages/apps/OpenNFC$ vi frameworks/libs/open_nfc/Android.mk 
+muojie@muojie-desktop:~/src/dp600/packages/apps/OpenNFC$ vi hardware/libhardware/modules/nfcc/nfcc/Android.mk 
+muojie@muojie-desktop:~/src/dp600/packages/apps/OpenNFC$ vi hardware/libhardware/modules/nfcc/nfc_hal_msr3110/Android.mk 
+muojie@muojie-desktop:~/src/dp600/packages/apps/OpenNFC$ vi hardware/libhardware/modules/nfcc/nfc_hal_simulator/Android.mk 
+muojie@muojie-desktop:~/src/dp600/packages/apps/OpenNFC$ vi hardware/libhardware/modules/nfcc/nfc_hal_microread/Android.mk 
+muojie@muojie-desktop:~/src/dp600/packages/apps/OpenNFC$ vi hardware/libhardware/modules/nfcc/nfc_hal_microread/driver/Makefile 
+muojie@muojie-desktop:~/src/dp600/packages/apps/OpenNFC$ vi hardware/libhardware/modules/nfcc/test_nfcc_hal/Android.mk 
+
+
+3.
+	INfcAdapter.Stub AIDL
+
+完善抽象的方法
+
+packages/apps/OpenNFC/frameworks/OpenNFCService/src/org/opennfc/service/OpenNFCService.java
+
+
+4. 上层的控制接口
+
+
+/home/muojie/src/dp600/packages/apps/OpenNFC/hardware/libhardware/modules/nfcc/nfc_hal_msr3110/porting/interface.c
+都使用nfc_hal_msr3110.so
+
+5. 读取顺序
+
+05 01 00 		读取序列号			成功
+45 02 02 46		ISO15693(Tag Inventory)		失败(02 01 07 0a 00) (02 01 05 08 00)
+46 04 01 00 27 10					(02 02 00 00)
+42 0E 80 06 81 00 00 00 00 00 06 00 FF FF 00 00 5B 03	（02 01 00）
+
+# ps
+USER     PID   PPID  VSIZE  RSS     WCHAN    PC         NAME
+root      1     0     424    284   c0126460 0000876c S /init
+root      2     0     0      0     c009b188 00000000 S kthreadd
+root      3     2     0      0     c0085a14 00000000 S ksoftirqd/0
+root      4     2     0      0     c00970b0 00000000 S events/0
+root      5     2     0      0     c00970b0 00000000 S khelper
+root      6     2     0      0     c00a2758 00000000 S async/mgr
+root      7     2     0      0     c00970b0 00000000 S fs_sync
+root      8     2     0      0     c00970b0 00000000 S suspend
+root      9     2     0      0     c00fb808 00000000 S sync_supers
+root      10    2     0      0     c00fc320 00000000 S bdi-default
+root      11    2     0      0     c00970b0 00000000 S kblockd/0
+root      12    2     0      0     c029ade8 00000000 S khubd
+root      13    2     0      0     c02c8660 00000000 S kseriod
+root      14    2     0      0     c00970b0 00000000 S kmmcd
+root      15    2     0      0     c00f4404 00000000 S kswapd0
+root      16    2     0      0     c00970b0 00000000 S aio/0
+root      17    2     0      0     c00970b0 00000000 S crypto/0
+root      33    2     0      0     c00970b0 00000000 S kstriped
+root      34    2     0      0     c00970b0 00000000 S kondemand/0
+root      35    2     0      0     c00970b0 00000000 S kconservative/0
+root      36    2     0      0     c00970b0 00000000 S usbhid_resumer
+root      37    2     0      0     c00970b0 00000000 S binder
+root      38    2     0      0     c030f608 00000000 S lowmemorykiller
+root      39    2     0      0     c00970b0 00000000 S accdet
+root      40    2     0      0     c0310910 00000000 S keyEvent_send
+root      41    2     0      0     c00970b0 00000000 S mt6575_vibrator
+root      42    2     0      0     c0329b40 00000000 D pmic_thread_kth
+root      43    2     0      0     c0338dfc 00000000 D bat_thread_kthr
+root      44    2     0      0     c0377f78 00000000 S screen_update_k
+root      45    2     0      0     c00970b0 00000000 S tvout
+root      46    2     0      0     c02f3d40 00000000 S mmcqd
+root      48    2     0      0     c039e630 00000000 S mtk-tpd
+root      49    2     0      0     c00970b0 00000000 S tpd_esd_check/0
+root      50    2     0      0     c02c0ea4 00000000 S file-storage
+root      51    2     0      0     c008df6c 00000000 D wdtk
+root      52    1     304    152   c0126460 0000876c S /sbin/ueventd
+root      54    2     0      0     c01ca070 00000000 S jbd2/mmcblk0p6-
+root      55    2     0      0     c00970b0 00000000 S ext4-dio-unwrit
+root      56    2     0      0     c01374a8 00000000 S flush-179:0
+root      59    2     0      0     c01ca070 00000000 S jbd2/mmcblk0p3-
+root      60    2     0      0     c00970b0 00000000 S ext4-dio-unwrit
+root      65    2     0      0     c01ca070 00000000 S jbd2/mmcblk0p2-
+root      66    2     0      0     c00970b0 00000000 S ext4-dio-unwrit
+root      69    2     0      0     c01ca070 00000000 S jbd2/mmcblk0p5-
+root      70    2     0      0     c00970b0 00000000 S ext4-dio-unwrit
+root      72    2     0      0     c00970b0 00000000 S pvr_timer/0
+root      73    2     0      0     bf05a99c 00000000 S mtk_stpd
+root      74    2     0      0     bf05cc50 00000000 S mtk_stpd2
+root      75    2     0      0     bf0ad5c8 00000000 S mtk_wmtd
+root      76    2     0      0     c00970b0 00000000 S fm_workqueue
+root      77    2     0      0     c00970b0 00000000 S fm_timer_workqu
+shell     78    1     836    428   c0126460 afd0c59c S /system/bin/aee_aed
+root      79    1     772    336   c0082558 afd0c3ac S /system/bin/sh
+system    82    1     856    296   c0309ec8 afd0b6fc S /system/bin/servicemanager
+root      83    1     4000   680   ffffffff afd0bdac S /system/bin/vold
+root      84    1     4332   884   ffffffff afd0bdac S /system/bin/netd
+root      85    1     2788   524   ffffffff afd0c738 S /system/bin/netdiag
+root      86    1     2108   392   ffffffff afd0bdac S /system/bin/mobile_log_d
+root      87    1     3008   384   ffffffff afd0bdac S /system/bin/hald
+root      88    1     2996   408   ffffffff afd0c738 S /system/bin/debuggerd
+root      90    1     99536  31672 c0126460 afd0b844 S zygote
+root      91    1     44744  8060  ffffffff afd0b6fc S /system/bin/mediaserver
+bluetooth 92    1     1308   584   c0126460 afd0c59c S /system/bin/dbus-daemon
+system    93    1     708    276   c0126460 afd0c59c S /system/bin/6620_launcher
+bluetooth 94    1     4116   820   ffffffff afd0b844 S /system/bin/mtkbt
+root      95    1     904    340   bf1a1b20 afd0b6fc S /system/bin/ccci_fsd
+root      96    1     708    264   bf19d1f0 afd0b45c S /system/bin/ccci_mdinit
+system    97    1     5032   400   ffffffff afd0c738 S /system/bin/atci
+root      98    1     872    356   c0445bb4 afd0b45c S /system/bin/installd
+keystore  99    1     1796   444   c03b0448 afd0c0cc S /system/bin/keystore
+root      100   1     6124   1064  ffffffff afd0c59c S /system/bin/mtk_agpsd
+root      102   1     17436  4544  ffffffff afd0bdac S /system/bin/em_svr
+root      103   1     4432   672   ffffffff afd0b6fc S /system/bin/nvram_agent_binder
+system    105   1     12924  3600  c0054614 afd0b6fc S /system/bin/mdpd
+root      106   1     772    308   c023f83c afd0b45c S /system/bin/sh
+root      107   1     3440   176   ffffffff 000082b4 S /sbin/adbd
+media     108   1     19652  4764  ffffffff afd0b6fc S /system/bin/drmserver
+root      113   79    944    304   c00803f0 afd0b45c S cat
+root      133   2     0      0     c00970b0 00000000 S pvr_workqueue
+root      143   1     9092   424   ffffffff afd0bdac S /system/bin/gsm0710muxd
+root      144   1     2784   616   ffffffff afd0b4fc S /system/bin/mdlogger
+system    149   90    195480 52588 ffffffff afd0b6fc S system_server
+root      159   2     0      0     c00970b0 00000000 S mtklfb
+radio     178   1     18020  920   ffffffff afd0bdac S /system/bin/rild
+system    255   90    124964 29416 ffffffff afd0c51c S com.android.systemui
+radio     270   90    135128 28184 ffffffff afd0c51c S com.android.phone
+root      291   1     864    360   c014ccd8 afd0c51c S /system/xbin/mnld
+system    297   90    121836 30376 ffffffff afd0c51c S com.android.settings
+app_0     344   90    111312 22788 ffffffff afd0c51c S com.when.android.calendar365
+app_40    345   90    111416 19756 ffffffff afd0c51c S com.mediatek.bluetooth
+app_60    348   90    111672 19376 ffffffff afd0c51c S com.tencent.qq
+app_2     351   90    116072 24560 ffffffff afd0c51c S com.android.inputmethod.pinyin
+app_63    378   90    109920 18444 ffffffff afd0c51c S com.Android.SmsReg
+app_19    390   90    113412 22428 ffffffff afd0c51c S android.process.media
+app_10    425   90    111144 20980 ffffffff afd0c51c S com.android.providers.calendar
+app_16    448   90    111232 20364 ffffffff afd0c51c S com.android.deskclock
+app_20    460   90    112936 22276 ffffffff afd0c51c S com.android.email
+app_36    472   90    125908 21284 ffffffff afd0c51c S com.android.mms
+radio     497   90    109952 19068 ffffffff afd0c51c S com.mediatek.mobilelog
+radio     507   90    114776 23516 ffffffff afd0c51c S com.mediatek.mdlogger
+app_36    516   90    110208 19944 ffffffff afd0c51c S com.mediatek.omacp
+app_30    524   90    130104 38136 ffffffff afd0c51c S com.mediatek.launcherplus
+app_69    559   90    111440 20964 ffffffff afd0c51c S com.mediawoz.goweather
+app_50    570   90    110584 20720 ffffffff afd0c51c S com.mediatek.appwidget.weather
+app_56    578   90    109932 18896 ffffffff afd0c51c S com.android.protips
+app_61    588   90    110972 20132 ffffffff afd0c51c S com.android.quicksearchbox
+app_66    698   90    111932 23620 ffffffff afd0c51c S com.android.spare_parts
+app_67    714   90    121720 28136 ffffffff afd0c51c S com.android.apps.tag
+app_53    753   90    115020 24248 ffffffff afd0c51c S com.nxp.nfc.se
+root      826   107   772    336   c0082558 afd0c3ac S /system/bin/sh
+root      827   826   944    328   00000000 afd0b45c R ps
+
