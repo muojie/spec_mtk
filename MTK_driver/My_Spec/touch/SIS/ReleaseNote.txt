@@ -1,0 +1,15 @@
+*************************************************************
+*                                                           *
+*                                                           *
+*                         ReleaseNote                       *
+*                                                           *
+*                                                           *
+*************************************************************
+[2011-08-05]
+Version: Android_v0.08.00
+1. Define the keyword _INT_MODE_1 to support interrupt case1 and case2 mode.
+
+[2011-06-28]
+Version: Android_v0.07.38
+1. Support F/W power saving commands in Suspend/Resume.
+2. Remove legacy sis81x codes.
