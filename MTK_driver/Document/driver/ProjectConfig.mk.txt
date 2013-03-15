@@ -1,0 +1,4 @@
+MTK 工程配置文件
+
+OPTR_SPEC_SEG_DEF=OP02_SPEC0200_SEGA
+	该定义会在mediatek/source/operator/Android.mk里用到，用于选择

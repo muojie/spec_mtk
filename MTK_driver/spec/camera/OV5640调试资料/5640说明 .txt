@@ -1,0 +1,26 @@
+AF
+
+1. init
+
+  download  ov5640 init setting 
+  download  ov5640 init IQ setting   
+   
+  download  AF init setting      
+
+
+
+2.  preview
+
+  download  ov5640_preview_setting 
+
+   update AF zone.    	 ( ov5640_relanch_auto_focus )
+   
+
+
+
+3. ov5640_capture_tbl	
+
+  do AF .    			  ( ov5640_set_auto_focus ) 
+	// 可用我改的那个 
+
+  download  ov5640_capture_tbl    ( capture )

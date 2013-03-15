@@ -1,0 +1,153 @@
+ #if 1
+
+ //9805+ivo5.2
+//rgb
+//************* Start Initial Sequence **********// 
+SPI_WriteComm(0xFF); //EXTC command Password 
+SPI_WriteData(0xFF);
+SPI_WriteData(0x98);
+SPI_WriteData(0x05);
+
+SPI_WriteComm(0xFD);
+SPI_WriteData(0x0F);
+SPI_WriteData(0x1F);
+SPI_WriteData(0x44);
+SPI_WriteData(0x00);
+
+SPI_WriteComm(0xF8);
+SPI_WriteData(0x30);
+SPI_WriteData(0x03);
+SPI_WriteData(0x03);
+SPI_WriteData(0x30);
+SPI_WriteData(0x02);
+SPI_WriteData(0x02);
+SPI_WriteData(0x30);
+SPI_WriteData(0x01);
+SPI_WriteData(0x01);
+SPI_WriteData(0x30);
+SPI_WriteData(0x01);
+SPI_WriteData(0x01);
+SPI_WriteData(0x30);
+SPI_WriteData(0x01);
+SPI_WriteData(0x01);
+ 
+SPI_WriteComm(0xB8); //EPF & DBI - 8/9/16/18/24 bits select
+SPI_WriteData(0x74); //04:24bit 03:18bit 02:16bit 01:9bit 00:8bit	    74	   72
+  
+SPI_WriteComm(0xF0); 
+SPI_WriteData(0xA0);
+ 
+SPI_WriteComm(0xF1); 
+SPI_WriteData(0x00);
+
+SPI_WriteComm(0xF2); 
+SPI_WriteData(0x00);
+SPI_WriteData(0x58);
+SPI_WriteData(0x41);
+
+SPI_WriteComm(0xFC); 
+SPI_WriteData(0x02);  //02
+SPI_WriteData(0x0F);
+SPI_WriteData(0x01);
+
+SPI_WriteComm(0xF9); 
+SPI_WriteData(0x80);
+SPI_WriteData(0xFF);
+SPI_WriteData(0xFF);
+
+SPI_WriteComm(0xFE); 
+SPI_WriteData(0x19);
+Delay(500);
+
+SPI_WriteComm(0xEB); 
+SPI_WriteData(0x08);
+SPI_WriteData(0x0F);
+
+SPI_WriteComm(0xE0); //P-Gamma 
+SPI_WriteData(0x00);
+SPI_WriteData(0x0F);
+SPI_WriteData(0x24);
+SPI_WriteData(0x19);
+SPI_WriteData(0x18);
+SPI_WriteData(0x1F);
+SPI_WriteData(0x7F);
+SPI_WriteData(0x0F);
+SPI_WriteData(0x00);
+SPI_WriteData(0x02);
+SPI_WriteData(0x01);
+SPI_WriteData(0x00);
+SPI_WriteData(0x09);
+SPI_WriteData(0x2A);
+SPI_WriteData(0x2D);
+SPI_WriteData(0x00);
+
+SPI_WriteComm(0xE1); //N-Gamma  
+SPI_WriteData(0x00);
+SPI_WriteData(0x12);
+SPI_WriteData(0x15);
+SPI_WriteData(0x15);
+SPI_WriteData(0x14);
+SPI_WriteData(0x1D);
+SPI_WriteData(0x7D);
+SPI_WriteData(0x0A);
+SPI_WriteData(0x00);
+SPI_WriteData(0x04);
+SPI_WriteData(0x00);
+SPI_WriteData(0x10);
+SPI_WriteData(0x0C);
+SPI_WriteData(0x1B);
+SPI_WriteData(0x16);
+SPI_WriteData(0x00);
+
+SPI_WriteComm(0xC1); //Power Control 1
+SPI_WriteData(0x13); //VGH & VGL
+SPI_WriteData(0x30); //EXT Pumping CLK & Vreg1out 
+SPI_WriteData(0x0e); //Vreg2out	   //0e
+SPI_WriteData(0x26); //VCI1 & VCL
+
+SPI_WriteComm(0xC7); //VCOM
+SPI_WriteData(0xCA);
+
+SPI_WriteComm(0xB1); //Frame Rate Control 
+SPI_WriteData(0x00);
+SPI_WriteData(0x12);
+SPI_WriteData(0x12);
+
+SPI_WriteComm(0xB4); 
+SPI_WriteData(0x02);
+
+
+
+SPI_WriteComm(0x3A); //16 & 18 & 24 bits 
+SPI_WriteData(0x77); //55:16bits, 66:18bits, 77:24bits
+
+SPI_WriteComm(0x21); 
+
+SPI_WriteComm(0xB0); 
+SPI_WriteData(0x01);//0
+
+SPI_WriteComm(0xb6); //MCU/RGB I/F Select
+SPI_WriteData(0x21); //01:MCU 21:RGB       81		   31	   B1
+
+SPI_WriteComm(0x36); 
+SPI_WriteData(0x0a); //a	   8
+
+SPI_WriteComm(0xC2); 
+SPI_WriteData(0x01);
+					
+//SPI_WriteComm(0x39);
+ 
+SPI_WriteComm(0x11); 
+Delay(120);
+SPI_WriteComm(0x29); 
+Delay(20);
+
+SPI_WriteComm(0xF9); 
+SPI_WriteData(0xA6);
+SPI_WriteData(0xFF);
+
+SPI_WriteComm(0x2C); 
+
+
+
+ #endif

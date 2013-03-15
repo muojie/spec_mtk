@@ -1,0 +1,160 @@
+
+Camera:
+
+后置（P7002）：
+
+GPIO_CAMERA_LDO_EN_PIN:		GPIO_CAMERA_PWR_EN(GPIO94)	:	(U7010 NC)
+
+U7010(NC)管脚量测：
+	1.VIN：		接VBAT，3.9V电压
+	5.VOUT：	接2V8，没有输出
+R7024(NC)管脚量测：
+	1.接2V8，没有电压
+	2.接VCAMA，没有电压		！！！！需要上电，调整PMU
+
+
+VCAMA: 2.8v
+
+VCAMD: 1.5v
+
+VCAMD2: 1.8v
+
+GPIO_CAMERA_CMRST_PIN:		CMRST(GPIO78)
+
+GPIO_CAMERA_CMPDN_PIN:		CMPDN(GPIO79)
+
+CMMECHSTROBE(GPIO98)
+
+
+
+前置（P7003）：
+
+GPIO_CAMERA_CMPDN1_PIN:		CAM_MECHSH0(GPIO96)
+
+GPIO_CAMERA_CMRST1_PIN:		CAM_MECHSH1(GPIO97)
+
+
+代码流程(Sensor)：
+
+===========================Camera的设备节点：kd_camera_hw==================
+custom/common/kernel/imgsensor/src/kd_sensorlist.h
+custom/common/kernel/imgsensor/src/kd_sensorlist.c
+
+
+CAMERA_HW_i2C_init()->
+	注册kd_camera_hw i2c设备
+	注册platform driver : g_stCAMERA_HW_Driver (name= image_sensor)
+	创建/proc/driver/camsensor文件节点，添加调试接口。
+
+CAMERA_HW_probe->
+	注册i2c_driver : CAMERA_HW_i2c_driver
+	强制挂载i2c驱动，group: 1, addr: 0xfe
+
+CAMERA_HW_i2c_probe->
+	注册字符驱动：注册设备号，注册fops，创建文件节点/dev/kd_camera_hw
+	该设备节点，在libmhaldrv.so库中被调用，但是没有源代码，所以不能分析。
+	camera相关的库共有：libmhaldrv.so, libcameracustom.so, libcameraprofile.so
+
+	其中libcameracustom相关的源代码在custom/common/hal/camera,imgsensor,lens下面。
+	另外还有camera.default.so库，源代码在source/external/camera下面。
+
+主要的fops是ioctl: CAMERA_HW_Ioctl->
+
+===========================ioctl 调用的函数=================================
+kdSetDriver(&pDrvIndex)	
+
+	pDrvIndex			//由上层给出。
+
+		drvIdx				//标识摄像头在数组中的位置，用来调用相应的初始化函数。
+		g_currDualSensorIdx		//标识摄像头是主摄还是前摄，用来上电。
+
+	kdGetSensorInitFuncList()	//获得支持的Camera Sensor 列表。赋值给pSensorList。
+
+		pSensorList[drvIdx].drv_name	//获得相应的设备节点，但是并没有使用。
+		pSensorList[drvIdx].SensorId	//返回sensor id。赋值给pDrvIndex
+		pSensorList[drvIdx].SensorInit	//获得控制相应sensor的句柄，赋值给g_pSensorFunc，通过它才可以真实的控制Sensor（其实就是写寄存器）
+
+=========================================
+adopt_CAMERA_HW_Open()
+
+	kdModulePowerOn()，该函数是对kdCISModulePowerOn()函数封装。对Sensor上电。
+
+=========================================
+adopt_CAMERA_HW_GetInfo()
+	
+	g_pSensorFunc->SensorGetInfo(pSensorGetInfo->ScenarioId,&info,&config);
+	获得Sensor的Info，包括MCLK，极性，分辨率等硬件参数。
+
+=========================================
+adopt_CAMERA_HW_GetResolution()
+
+	g_pSensorFunc->SensorGetResolution(pBuf); 
+	获得Sensor的分辨率
+
+=========================================
+adopt_CAMERA_HW_FeatureControl()
+	
+	很重要的函数，设置Sensor的特效。
+	AF：RAW格式在这里没有相关的设置，都是由ISP处理，然后通LENS控制VCM。
+
+=========================================
+adopt_CAMERA_HW_Control（）
+
+	切换Preview Capture Video模式
+
+=========================================
+adopt_CAMERA_HW_CheckIsAlive()
+
+	kdModulePowerOn()  上电，实际调用kdCISModulePowerOn()函数。
+
+	SensorFeatureControl()	这里会读取sensor id，检查一下该型号的sensor是否存在。
+	OV5647Open()	这里会读取sensor id，检查一下该型号的sensor是否存在。
+
+
+====================================================================
+kdCISModulePowerOn()函数定义在：
+	mediatek/custom/nollec73_gb/kernel/camera/camera/kd_camera_hw.c
+该函数是对模组进行上电，这个函数在common目录下也有定义，但是其实调用到这里。
+
+
+代码流程(ISP)：
+=========================================================================================================================
+mediatek/platform/mt6577/kernel/core/camera_isp.c
+
+	生成设备节点：camera-isp
+
+FLASH:
+
+GPIO_CAMERA_FLASH_MODE_PIN:	FLASH_EN(GPIO95)	:	(UA001-SGM3140)
+GPIO_CAMERA_FLASH_EN_PIN:	TORCH_EN(GPIO46)	:
+
+PWM3	GPIO1011		:	GPIO_PWM_3_PIN
+
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+由于libmhaldrv.so没有源码，我们就先分析一下camera.default.so，源代码在source/external/camera下面。
+
+首先我们看两个函数：
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+getNumberOfCameras()
+
+	在这里我们能获得我们的设备有几个摄像头，这里其实是指的代码里有几个，其实只有2个，但会显示3个，因为驱动支持3个。
+	这里我们还可以看到各摄像头的facing,orientation。
+
+getCameraInfo()
+
+	它用的其实是getNumberOfCameras得到的数据。
+
+
+
+
+
+
+
+
+
+
+
+
+

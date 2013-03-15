@@ -1,0 +1,8 @@
+
+MTK 支持 格式化FAT分区
+
+主要是在VOLD里面添加了该功能。
+
+主要代码请见DP501与DP600的vold代码区别。
+
+#ifdef MTK_EMMC_SUPPORT
